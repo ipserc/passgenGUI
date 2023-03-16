@@ -1,5 +1,5 @@
 # passgenGUI
-GUI based on GTK for generating customized passwords
+Application for generating customized passwords with GUI based on GTK
 
 passgen allows you to generate passwords according to certain rules that are, a length, a set of characters and number of them.
 
