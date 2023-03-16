@@ -11,12 +11,13 @@ passgen has a rules checker that informs if the rules that have been defined are
 
 passgen can be executed in GUI mode and CCI also. It admits parameters to show different behaviour
 	
-  Usage: passgen [OPTION]... 
-	Easy passwords generator.
+  ## Usage 
+  passgen [OPTION]... 
 	
-  Abstract
-	passgen generates passwords of length given by the user.
-	
+  ## Description
+  
+  passgen generates passwords of length given by the user.
+  
   The passwords will follow some rules based in sets of characters.
 	
   The sets of characters are Upper Case, Lower Case, Numbers and Symbols.
@@ -26,7 +27,8 @@ passgen can be executed in GUI mode and CCI also. It admits parameters to show d
 	exact as the number given.
 	
   At least ONE set of characters must be active.
-	Options.
+
+  ## Options
   
 	Do not use any option to display the graphical interface.
 		-g, --nogui	no GUI, Command Line Interface mode.
@@ -34,6 +36,3 @@ passgen can be executed in GUI mode and CCI also. It admits parameters to show d
 		-c, --config	dumps the configuration on the screen.
 		-V, --version	prints passgen version.
 
-passgen on Github at https://github.com/ipserc/passgen
-
-You can report any bug at passgen's Github homepage
