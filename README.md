@@ -9,7 +9,7 @@ You can indicate the minimum number of each type of characters that you want to 
 
 passgen has a rules checker that informs if the rules that have been defined are apt to generate passwords.
 
-passgen can be executed in GUI mode and CCI also. It admits parameters to show different behaviour
+passgen can be executed in GUI mode and CCI also. It admits parameters to decide which mode to use.
 	
   ## Usage 
   passgen [OPTION]... 
