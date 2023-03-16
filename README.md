@@ -1,7 +1,7 @@
 # passgen (GUI)
 Application for generating customized passwords with GUI based on GTK
 
-passgen allows you to generate passwords according to certain rules that are, a length, a set of characters and number of them.
+passgen allows you to generate passwords according to certain rules that are, a length, a set of characters and the number of each one.
 
 The available character sets are uppercase letters, lowercase letters, digits 0 through 9, and a set of symbols. Different games can be selected, but at least one must be active.
 
