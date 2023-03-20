@@ -353,7 +353,7 @@ char * passgenPath(passgenConf_t * ptPassgenConf)
 {
 	struct stat s;
 	char home[PGNHOMELEN] = "";
-	char format[50];
+	//char format[50];
 	char * pgnHome;
 
 	if (!(pgnHome = malloc(PGNHOMELEN)))
@@ -369,12 +369,10 @@ char * passgenPath(passgenConf_t * ptPassgenConf)
 
 	if (__DEBUG__) TRACE("Home:%s", home);
 
-	sprintf(format, "%%%lus/%%%lus", strlen(home), strlen(PGNDIR));
-	sprintf(pgnHome, format, home, PGNDIR);
+	sprintf(pgnHome, "%.*s/%.*s", (int)strlen(home), home, (int)strlen(PGNDIR), PGNDIR);
 
 	if (__DEBUG__)
 	{
-		TRACE("format: %s", format);
 		TRACE("pgnHome (1): %s", pgnHome);
 	}
 
@@ -383,12 +381,10 @@ char * passgenPath(passgenConf_t * ptPassgenConf)
 	    if (errno == ENOENT) // does not exist
 	    {
 	    	if (mkdir(pgnHome, S_IRWXU|S_IRGRP|S_IXGRP|S_IROTH|S_IXOTH) == -1) mkdirErrorMngr(errno);
-	    	sprintf(format, "%%%lus/%%%lus", strlen(pgnHome), strlen(PGNFILENAME));
-	    	sprintf(pgnHome, format, pgnHome, PGNFILENAME);
+	    	sprintf(pgnHome, "%.*s/%.*s", (int)strlen(pgnHome), pgnHome, (int)strlen(PGNFILENAME), PGNFILENAME);
 
 	    	if (__DEBUG__)
 	    	{
-	    		TRACE("format: %s", format);
 	    		TRACE("pgnHome (does not exist - createPassgenConf(pgnHome, ptPassgenConf)): %s", pgnHome);
 	    	}
 
@@ -396,17 +392,16 @@ char * passgenPath(passgenConf_t * ptPassgenConf)
 	    }
 	} else if (!S_ISDIR(s.st_mode)) ERROR(ERROR01, pgnHome); // exists but it is not a dir
 
-	sprintf(format, "%%%lus/%%%lus", strlen(pgnHome), strlen(PGNFILENAME));
-	sprintf(pgnHome, format, pgnHome, PGNFILENAME);
+	sprintf(pgnHome, "%.*s/%.*s", (int)strlen(pgnHome), pgnHome, (int)strlen(PGNFILENAME), PGNFILENAME);
 
 	if (__DEBUG__)
 	{
-		TRACE("format: %s", format);
 		TRACE("pgnHome (EXISTS): %s", pgnHome);
 	}
 
 	return (char *)pgnHome;
 }
+
 
 /**
  * Try to read the config file passgen.conf
