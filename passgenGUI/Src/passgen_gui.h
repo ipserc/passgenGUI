@@ -42,6 +42,7 @@ extern void setPassgenConfCaseRule2Values(void);
 extern void initGrpChrLimit(void);
 extern void initExcludedGroups(void);
 extern void traceGrpChrExcluded(void);
+extern void printExcludedGroups(void);
 
 #define NORMAL_CURSOR GDK_LEFT_PTR
 

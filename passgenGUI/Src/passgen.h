@@ -108,6 +108,7 @@ void initExcludedGroups(void);
 _Bool appendExcludedGroups(int charGroup);
 _Bool inExcludedGroups(int charGroup);
 _Bool onlySymbols(void);
+void printExcludedGroups(void);
 int randomGroupSelector(int nbrItemsGroup);
 char *decodeGroupType(int charGroup);
 char *genPass(char *passContainer);

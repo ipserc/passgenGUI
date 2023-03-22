@@ -1,7 +1,7 @@
 /*
  * passgen_glade.h
  *
- *  Created on: jue 16 mar 2023 22:46:49 CET
+ *  Created on: mié 22 mar 2023 23:13:04 CET
  *      Author: ipserc
  *		File and code generated automatically from ./gladec.sh
  */

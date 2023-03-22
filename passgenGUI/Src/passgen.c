@@ -27,7 +27,7 @@
 //------------------------------------------
 //          PROGRAM FACTS SECTION
 //------------------------------------------
-#define VERSION		"1.0.0 (2023_0209_2222)"
+#define VERSION		"1.0.0 (2023_0209_2233)"
 #define AUTHOR		"ipserc"
 #define CONTACT 	"https://github.com/ipserc"
 #define CREATION	"2023/02/09"
@@ -220,6 +220,7 @@ void traceGrpChrExcluded(void)
 		}
 		TRACE("EXCLUDED_GRPS[%d]: %s : %s", i, decodeGroupType(EXCLUDED_GRPS[i]), estado);
 	}
+	if (__DEBUG__) TRACE("END traceGrpChrExcluded(void)", "");
 }
 
 /**
@@ -237,6 +238,9 @@ int sumActiveGrpChrLimit(void)
 		if (__DEBUG__) TRACE("getGrpChrLimit(%s): %d", decodeGroupType(charGroup), getGrpChrLimit(charGroup));
 		sum += isGrpChrExcluded(charGroup) ? 0 : getGrpChrLimit(charGroup);
 	}
+
+	if (__DEBUG__) TRACE("END sumActiveGrpChrLimit(void)", "");
+
 	return sum;
 }
 
@@ -252,11 +256,15 @@ int sumRestActiveGrpChrLimit(int charGroup)
 	if (__DEBUG__) TRACE("isGrpChrExcluded(%s): %s", decodeGroupType(charGroup), isGrpChrExcluded(charGroup) ? "True" : "False");
 
 	totalSum -= isGrpChrExcluded(charGroup) ? 0 : getGrpChrLimit(charGroup);
+
+	if (__DEBUG__) TRACE("END sumRestActiveGrpChrLimit(%s)", decodeGroupType(charGroup));
+
 	return totalSum;
 }
 
 /**
- *
+ * Pone la varuable global GRPCHRS_LIMIT[charGroup] al valor que se le pasa.
+ * Devuelve false si el conjunto de caracteres NO está activo o
  */
 bool setGrpChrLimit(int charGroup, int value)
 {
@@ -266,33 +274,53 @@ bool setGrpChrLimit(int charGroup, int value)
 
 	if (!checkGrpChrLimit(charGroup, value) )
 	{
+		if (__DEBUG__) TRACE("END PREMATURE setGrpChrLimit(%s, %d)", decodeGroupType(charGroup), value);
 		return false;
 	}
 
+	if (__DEBUG__) TRACE("isGrpChrExcluded(%s): %s", decodeGroupType(charGroup), isGrpChrExcluded(charGroup) ? "true" : "false");
+
 	if (!isGrpChrExcluded(charGroup))
 		printStatus(HIGH, "Character group %s: Limit set to %i", decodeGroupType(charGroup), value );
+
+	if (__DEBUG__) TRACE("END setGrpChrLimit(%s, %d)", decodeGroupType(charGroup), value);
 
 	return true;
 }
 
 /**
- *
+ * Chequea que la vlidez del límite al número de caracteres del grupo de caracteres
+ * Devuelve false si el grupo de caracteres está excluído, si el valor es menor que 1
+ * o si la suma con el resto de valores supera la longitud de la password a generar y
+ * el número de caracteres es mayor que 1/4 de la longitud de la password
  */
 bool checkGrpChrLimit(int charGroup, int value)
 {
-	if (__DEBUG__) TRACE("START checkGrpChrLimit(%s, %d)", decodeGroupType(charGroup), value);
+	if (__DEBUG__)
+	{
+		TRACE("START checkGrpChrLimit(%s, %d)", decodeGroupType(charGroup), value);
+		TRACE("PASS_LEN: %d", PASS_LEN);
+	}
 
-	if (value < 0 )
+	if (isGrpChrExcluded(charGroup))
+	{
+		if (__DEBUG__) TRACE("END PREMATURO checkGrpChrLimit(%s, %d)", decodeGroupType(charGroup), value);
+		return false;
+	}
+
+	if (value < 1 )
 	{
 		printStatus(BASIC, "Character group %s: Illegal value for a limit", decodeGroupType(charGroup));
 		return false;
 	}
 	if (value + sumRestActiveGrpChrLimit(charGroup) > PASS_LEN && value > ceil(PASS_LEN / 4.0))
 	{
-		// printStatus(HIGH, "Character group %s: The sum of the limits exceeds the length of the password", decodeGroupType(charGroup));
 		printStatus(BASIC, "Character group %s: Value %i will exceed the limit", decodeGroupType(charGroup), value );
 		return false;
 	}
+
+	if (__DEBUG__) TRACE("END checkGrpChrLimit(%s, %d)", decodeGroupType(charGroup), value);
+
 	return true;
 }
 
@@ -397,8 +425,8 @@ bool hasCharsRequired(int charGroup)
  */
 void initExcludedGroups(void)
 {
-	for (int charGroup = 0; charGroup < GROUPS_NBR; ++charGroup)
-		EXCLUDED_GRPS[charGroup] = NONE_GROUP;
+	for (int i = 0; i < GROUPS_NBR-1; ++i)
+		EXCLUDED_GRPS[i] = NONE_GROUP;
 }
 
 /**
@@ -468,6 +496,18 @@ bool onlySymbols(void)
 	onlySymbols = excludedUpper && excludedLower && excludedNumbr;
 	printStatus(HIGH, "Only Symbols is %s", boolToString(onlySymbols));
 	return onlySymbols;
+}
+
+/**
+ *
+ */
+void printExcludedGroups(void)
+{
+	for (int i = 0; i < GROUPS_NBR-1; ++i)
+	{
+		if (EXCLUDED_GRPS[i] != NONE_GROUP) printf("%s is excluded\n", decodeGroupType(EXCLUDED_GRPS[i]));
+	}
+
 }
 
 /* ************************************************************************
@@ -658,6 +698,8 @@ char * genPass(char * passContainer)
  */
 void setPassgenConfCaseRule2Values(void)
 {
+	if (__DEBUG__) TRACE("START of setPassgenConfCaseRule2Values()", "");
+
 	passgenConf_t * ptPassgenConf = getPassgenConf();
 
 	if (!strcmp(ptPassgenConf->passwordLength.preset, getPasswordLengthPresetsName(USER)))
@@ -665,30 +707,31 @@ void setPassgenConfCaseRule2Values(void)
 	else
 		PASS_LEN = ptPassgenConf->passwordLength.size;
 
-	setGrpChrLimit(UPPER_CASE_GROUP, ptPassgenConf->upperCaseRule.val);
 	if (!ptPassgenConf->upperCaseRule.chkBox)
 	{
 		appendExcludedGroups(UPPER_CASE_GROUP);
 	}
+	setGrpChrLimit(UPPER_CASE_GROUP, ptPassgenConf->upperCaseRule.val);
 
-	setGrpChrLimit(LOWER_CASE_GROUP, ptPassgenConf->lowerCaseRule.val);
 	if (!ptPassgenConf->lowerCaseRule.chkBox)
 	{
 		appendExcludedGroups(LOWER_CASE_GROUP);
 	}
+	setGrpChrLimit(LOWER_CASE_GROUP, ptPassgenConf->lowerCaseRule.val);
 
-	setGrpChrLimit(NUMBR_CASE_GROUP, ptPassgenConf->numberCaseRule.val);
 	if (!ptPassgenConf->numberCaseRule.chkBox)
 	{
 		appendExcludedGroups(NUMBR_CASE_GROUP);
 	}
+	setGrpChrLimit(NUMBR_CASE_GROUP, ptPassgenConf->numberCaseRule.val);
 
-	setGrpChrLimit(SYMBL_CASE_GROUP, ptPassgenConf->symbolCaseRule.val);
 	if (!ptPassgenConf->symbolCaseRule.chkBox)
 	{
 		appendExcludedGroups(SYMBL_CASE_GROUP);
 	}
+	setGrpChrLimit(SYMBL_CASE_GROUP, ptPassgenConf->symbolCaseRule.val);
 
+	if (__DEBUG__) TRACE("END of setPassgenConfCaseRule2Values()", "");
 }
 
 /**
@@ -701,6 +744,14 @@ char * passgenConf2Rules(void)
 	passgenConf_t * ptPassgenConf = getPassgenConf();
 	int errnum;
 
+	if (__DEBUG__) TRACE("START of passgenConf2Rules", "");
+
+	initGrpChrLimit();
+	initExcludedGroups();
+	passgenGtkSettings2PassgenConf();
+	setPassgenConfCaseRule2Values();
+	printExcludedGroups();
+
 	if (PASS_LEN < 1)
 	{
 		printStatus(BASIC, "ERROR - The password length must a positive number greater the zero. The current length is: %d", PASS_LEN);
@@ -708,11 +759,6 @@ char * passgenConf2Rules(void)
 		*newPass = '\0';
 		return newPass;
 	}
-
-	if (__DEBUG__) TRACE("START of passgenConf2Rules", "");
-
-	initGrpChrLimit();
-	initExcludedGroups();
 
 	if (!strcmp(ptPassgenConf->passwordLength.preset, getPasswordLengthPresetsName(USER)))
 		PASS_LEN = ptPassgenConf->passwordLength.user;
@@ -732,8 +778,6 @@ char * passgenConf2Rules(void)
 	}
 
 	if (__DEBUG__) TRACE("newPass initialized: %s", newPass);
-
-	setPassgenConfCaseRule2Values();
 
 	if (__DEBUG__)
 	{
@@ -768,8 +812,8 @@ void passgenGUI(void)
 	gtk_widget_show(passgenMainWindow);
 	gtkSetCursor(NORMAL_CURSOR);
 
-	// Sets the version of Zhavam in the about dialog
-	// -------- gtk_about_dialog_set_version(GTK_ABOUT_DIALOG(gtk_builder_get_object(getGtkBuilder(), "aboutZhavam")), VERSION);
+	// Sets the version of passgen in the about dialog
+	gtk_about_dialog_set_version(GTK_ABOUT_DIALOG(gtk_builder_get_object(getGtkBuilder(), "gtkAboutDialog_passgen")), VERSION);
 
 	catchSigterm();
 

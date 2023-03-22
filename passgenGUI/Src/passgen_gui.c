@@ -103,7 +103,7 @@ void catchSigterm()
     static struct sigaction _sigact;
 
     memset(&_sigact, 0, sizeof(_sigact));
-//    _sigact.sa_sigaction = (void *)gtkClosePassgen;
+    // _sigact.sa_sigaction = (void *)gtkClosePassgen;
     _sigact.sa_flags = SA_SIGINFO;
 
     sigaction(SIGTERM, &_sigact, NULL);
@@ -168,10 +168,12 @@ void gtkWidgetSetEditable(GtkWidget * gtkWidget, gboolean editable)
  *********************************************************** */
 
 /**
- * Reads the status and values of the Password Rules Set Frame and put them inside the passgenConf system variable
+ * Reads the status and values of the Password Rules Set Frame from the GUI and put them inside the passgenConf system variable
  */
 void passgenGtkSettings2PassgenConf(void)
 {
+	if (__DEBUG__) TRACE("START of passgenGtkSettings2PassgenConf()", "");
+
 	passgenConf_t * ptPassgenConf = getPassgenConf();
 
 	/* Password Length Preset*/
@@ -208,6 +210,7 @@ void passgenGtkSettings2PassgenConf(void)
 	ptPassgenConf->symbolCaseRule.chkBox = gtkCheckButtonPasswordRulesSetSymbolGetActive();
 	ptPassgenConf->symbolCaseRule.val = gtkEntryPasswordRulesSetSymbolGetVal();
 
+	if (__DEBUG__) TRACE("END of passgenGtkSettings2PassgenConf()", "");
 }
 
 /**
@@ -215,22 +218,21 @@ void passgenGtkSettings2PassgenConf(void)
  */
 void gtkPasswordGenerate(void)
 {
-	if (__DEBUG__) TRACE("START of gtkPasswordGenerate", "");
+	if (__DEBUG__) TRACE("START of gtkPasswordGenerate()", "");
 
 	gtkEntryPasswordTextClear();
 	gtkTextViewStatusClear();
 
-	passgenGtkSettings2PassgenConf();
-	setPassgenConfCaseRule2Values();
 	if (__DEBUG__) TRACE("About to generate the new password", "");
 
 	char * newPass = passgenConf2Rules();
 	if (__DEBUG__) TRACE("newPass Address %p", newPass);
 
 	gtkEntryPasswordTextSet(genPass(newPass));
-	if (__DEBUG__) TRACE("END of gtkPasswordGenerate", "");
 
 	free(newPass);
+
+	if (__DEBUG__) TRACE("END of gtkPasswordGenerate()", "");
 }
 
 /**
@@ -278,7 +280,11 @@ gboolean gtkCheckGrpChrLimit(int charSetGroup, int value)
  */
 void passgenConfRulesValuesSet(void)
 {
-	if (__DEBUG__) TRACE("CALL initGrpChrLimit()", "");
+	if (__DEBUG__)
+	{
+		TRACE("START passgenConfRulesValuesSet(void)", "");
+		TRACE("CALL initGrpChrLimit()", "");
+	}
 	initGrpChrLimit();
 
 	if (__DEBUG__) TRACE("CALL initExcludedGroups()", "");
@@ -292,7 +298,11 @@ void passgenConfRulesValuesSet(void)
 
 	if (__DEBUG__) TRACE("CONTINUE gtkCheckRules(void)", "");
 
-	if(__DEBUG__) traceGrpChrExcluded();
+	if(__DEBUG__)
+	{
+		traceGrpChrExcluded();
+		TRACE("END passgenConfRulesValuesSet(void)", "");
+	}
 }
 
 /**
@@ -310,8 +320,9 @@ gboolean gtkCheckRules(void)
 
 	gtkEntryPasswordTextClear();
 	gtkTextViewStatusClear();
-
+	passgenGtkSettings2PassgenConf();
 	passgenConfRulesValuesSet();
+	printExcludedGroups();
 
 	if (PASS_LEN <= 0)
 	{
@@ -328,6 +339,9 @@ gboolean gtkCheckRules(void)
 		for (int charSetGroup = UPPER; charSetGroup < LAST_SET; ++charSetGroup)
 		{
 			value = gtkGetActiveEntryPasswordRuleValue(charSetGroup);
+
+			// value == 0 means CarSetGroup not active
+			if (value == 0) continue;
 
 			if (__DEBUG__) TRACE("Group Char %s Value: %d", decodeGroupType(charSetGroup), value);
 
@@ -444,6 +458,5 @@ void gtkSignalsConnect(void)
 
 	GtkMenuItem * gtkMenuItemHelpAbout = GTK_MENU_ITEM(gtk_builder_get_object(getGtkBuilder(), "gtkMenuItem_HelpAbout"));
 	g_signal_connect(G_OBJECT(gtkMenuItemHelpAbout), "activate", G_CALLBACK(gtkMenuItemHelpAboutShow), (gpointer)NULL);
-
 }
 
