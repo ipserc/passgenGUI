@@ -1,4 +1,19 @@
-VERSION	"1.0.0 (2023_0326_1050)"
+VERSION		"1.0.1 (2023_0326_1205)"
+	Glade/
+		passgen.glade
+			Added suggestions for all the widgets of the main dialog window
+	Src/
+		passgen_glade.c
+			Updated with the new GUI definition
+		
+	Bin/
+		===========================================
+		passgen has been compiled...
+		Compilation:dom 26 mar 2023 12:12:40 CEST
+		===========================================
+		md5sum - 678f544d62f9b2001b084dce07c91b0d  passgen
+
+VERSION		"1.0.0 (2023_0326_1050)"
 	passgen_config.c
 		Commented all the functions
 	passgen_gui_AboutDialog.c

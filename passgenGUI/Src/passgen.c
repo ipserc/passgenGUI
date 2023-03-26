@@ -27,7 +27,7 @@
 //------------------------------------------
 //          PROGRAM FACTS SECTION
 //------------------------------------------
-#define VERSION		"1.0.0 (2023_0326_1050)"
+#define VERSION		"1.0.1 (2023_0326_1205)"
 #define AUTHOR		"ipserc"
 #define CONTACT 	"https://github.com/ipserc"
 #define CREATION	"2023/02/09"
