@@ -23,8 +23,8 @@ VERSION		"1.0.0 (2023_0326_1050)"
 		Commented all the functions
 	randomize.c
 		Commented all the functions
-	Doc/
-		Doxygen documentation of the project
+	Doc.7z
+		Doxygen documentation of the project compressed
 	Bin/
 		===========================================
 		passgen has been compiled...
