@@ -416,7 +416,7 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">False</property>
-                                <property name="tooltip-text" translatable="yes">Turns on/off the use of Symbols' characters to generate the passwor</property>
+                                <property name="tooltip-text" translatable="yes">Turns on/off the use of Symbols' characters to generate the password</property>
                                 <property name="margin-end">3</property>
                                 <property name="margin-bottom">3</property>
                                 <property name="hexpand">False</property>
@@ -434,7 +434,7 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">False</property>
-                                <property name="tooltip-text" translatable="yes">Turns on/off the use of Lowercase' characters to generate the passwor</property>
+                                <property name="tooltip-text" translatable="yes">Turns on/off the use of Lowercase' characters to generate the password</property>
                                 <property name="margin-start">3</property>
                                 <property name="hexpand">False</property>
                                 <property name="vexpand">False</property>
@@ -451,7 +451,7 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">False</property>
-                                <property name="tooltip-text" translatable="yes">Turns on/off the use of Numerics' characters to generate the passwor</property>
+                                <property name="tooltip-text" translatable="yes">Turns on/off the use of Numerics' characters to generate the password</property>
                                 <property name="margin-start">3</property>
                                 <property name="margin-bottom">3</property>
                                 <property name="hexpand">False</property>
