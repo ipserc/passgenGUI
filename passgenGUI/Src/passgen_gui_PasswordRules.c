@@ -14,7 +14,9 @@
  *********************************************************** */
 
 /**
- * Sets the Editable property for "gtkEntry_PasswordRulesr"
+ * Sets the Editable property for the gtkEntry control
+ * @param gtkEntryName The name of the gtkEntry control
+ * @param editable The editable attribute True or False
  */
 void gtkEntryPasswordRulesSetEditable(char * gtkEntryName, gboolean editable)
 {
@@ -23,7 +25,10 @@ void gtkEntryPasswordRulesSetEditable(char * gtkEntryName, gboolean editable)
 }
 
 /**
- *
+ * Initializes the gtkEntryName for gtkEntryPasswordRules section and sets the editable attribute
+ * @param gtkEntryName the gtkEntry control name of the set of characters
+ * @param val The value of the limit for the set of characters
+ * @param chkBox The state of the checkbox to set teh editable attribute
  */
 void gtkEntryPasswordRulesInit(char * gtkEntryName, int val, bool chkBox)
 {
@@ -43,7 +48,9 @@ void gtkEntryPasswordRulesInit(char * gtkEntryName, int val, bool chkBox)
  *********************************************************** */
 
 /**
- * Returns the Active state for gtkCheckButton_PasswordRulesSet_Upper"
+ * Returns the Active state for the gtkCheckButtonName passed
+ * @param gtkCheckButtonName The name of the gtkCheckButton
+ * @return The state as boolena, True if actve, False otherwise
  */
 gboolean gtkCheckButtonPasswordRulesGetActive(char * gtkCheckButtonName)
 {
@@ -52,7 +59,8 @@ gboolean gtkCheckButtonPasswordRulesGetActive(char * gtkCheckButtonName)
 }
 
 /**
- *
+ * Sets the status active to a gtkCheckButton selected by its name
+ * @param gtkCheckButtonName The name of the gtkCheckButton
  */
 void gtkCheckButtonPasswordRulesSetActive(char * gtkCheckButtonName)
 {
@@ -61,8 +69,10 @@ void gtkCheckButtonPasswordRulesSetActive(char * gtkCheckButtonName)
 }
 
 /**
- * Manage the signal Toggled for gtkCheckButton_PasswordRulesSet_Upper
- * It does the necessary actions
+ * Manage the signal Toggled for gtkCheckButtonName and gtkEntryName contorls
+ * Calls gtkWidgetSetEditable and gtkCheckButtonPasswordRulesGetActive
+ * @param gtkCheckButtonName The gtkCheckButton control Name
+ * @param gtkEntryName The gtkEntry control name
  */
 void gtkCheckButtonPasswordRulesToggled(char * gtkCheckButtonName, char * gtkEntryName)
 {
@@ -72,7 +82,9 @@ void gtkCheckButtonPasswordRulesToggled(char * gtkCheckButtonName, char * gtkEnt
 }
 
 /**
- *
+ * Initializes the gtkCheckButton by its name to the state of chkBox
+ * @param gtkCheckButtonName The gtkCheckButton control name
+ * @param chkBox The chkBox state True for active, False for dismiss
  */
 void gtkCheckButtonPasswordRulesInit(char * gtkCheckButtonName, bool chkBox)
 {
@@ -82,7 +94,9 @@ void gtkCheckButtonPasswordRulesInit(char * gtkCheckButtonName, bool chkBox)
 }
 
 /**
- *
+ * Check if the checkButtonSet is the last active of the Button Password Rules
+ * @param checkButtonSet The id of te set, can be UPPER, LOWER, NUMBER or SYMBOL
+ * @return True if the checkButtonSet is the last button active
  */
 gboolean gtkCheckButtonPasswordRulesLast(int checkButtonSet)
 {
@@ -120,7 +134,8 @@ gboolean gtkCheckButtonPasswordRulesLast(int checkButtonSet)
  *********************************************************** */
 
 /**
- * Sets the Editable property for "gtkEntry_PasswordRulesSet_Number"
+ * Sets the editable property for "gtkEntry_PasswordRulesSet_Number"
+ * @param editable The editable property
  */
 void gtkEntryPasswordRulesSetNumberSetEditable(gboolean editable)
 {
@@ -128,7 +143,8 @@ void gtkEntryPasswordRulesSetNumberSetEditable(gboolean editable)
 }
 
 /**
- *
+ * Sets the value and the check from ptPassgenConf to gtkEntry_PasswordRulesSet_Number
+ * Calls gtkEntryPasswordRulesInit
  */
 void gtkEntryPasswordRulesSetNumberInit(void)
 {
@@ -137,7 +153,8 @@ void gtkEntryPasswordRulesSetNumberInit(void)
 }
 
 /**
- *
+ * Returns the value of the limit from gtkEntry_PasswordRulesSet_Number
+ * @return The value of the limit
  */
 int gtkEntryPasswordRulesSetNumberGetVal(void)
 {
@@ -150,7 +167,8 @@ int gtkEntryPasswordRulesSetNumberGetVal(void)
  *********************************************************** */
 
 /**
- * Returns the Active state for gtkCheckButton_PasswordRulesSet_Number"
+ * Returns the Active state for gtkCheckButton_PasswordRulesSet_Number
+ * @return True if the CheckButton of Number is Active, otherwise False
  */
 gboolean gtkCheckButtonPasswordRulesSetNumberGetActive(void)
 {
@@ -159,7 +177,9 @@ gboolean gtkCheckButtonPasswordRulesSetNumberGetActive(void)
 
 /**
  * Manage the signal Toggled for gtkCheckButton_PasswordRulesSet_Number
- * It does the necessary actions
+ * It calls gtkCheckButtonPasswordRulesLast, gtkCheckButtonPasswordRulesGetActive, gtkCheckButtonPasswordRulesToggled
+ * If it is the las active checkbox, prevents deactivating
+ * Prints Status message for status level NORMAL
  */
 void gtkCheckButtonPasswordRulesSetNumberToggled(void)
 {
@@ -177,7 +197,8 @@ void gtkCheckButtonPasswordRulesSetNumberToggled(void)
 }
 
 /**
- *
+ * Sets the check from ptPassgenConf to gtkEntry_PasswordRulesSet_Number
+ * Calls gtkCheckButtonPasswordRulesInit
  */
 void gtkCheckButtonPasswordRulesSetNumberInit(void)
 {
@@ -188,8 +209,10 @@ void gtkCheckButtonPasswordRulesSetNumberInit(void)
 /* ***********************************************************
  * gtkEntry_PasswordRulesSet_Symbol
  *********************************************************** */
+
 /**
  * Sets the Editable property for "gtkEntry_PasswordRulesSet_Symbol"
+ * @param editable The editable property
  */
 void gtkEntryPasswordRulesSetSymbolSetEditable(gboolean editable)
 {
@@ -197,7 +220,8 @@ void gtkEntryPasswordRulesSetSymbolSetEditable(gboolean editable)
 }
 
 /**
- *
+ * Sets the value and the check from ptPassgenConf to gtkEntry_PasswordRulesSet_Symbol
+ * Calls gtkEntryPasswordRulesInit
  */
 void gtkEntryPasswordRulesSetSymbolInit(void)
 {
@@ -206,7 +230,8 @@ void gtkEntryPasswordRulesSetSymbolInit(void)
 }
 
 /**
- *
+ * Returns the value of the limit from gtkEntry_PasswordRulesSet_Symbol
+ * @return The value of the limit
  */
 int gtkEntryPasswordRulesSetSymbolGetVal(void)
 {
@@ -220,6 +245,7 @@ int gtkEntryPasswordRulesSetSymbolGetVal(void)
 
 /**
  * Returns the Active state for gtkCheckButton_PasswordRulesSet_Symbol"
+ * @return True if the CheckButton of Number is Active, otherwise False
  */
 gboolean gtkCheckButtonPasswordRulesSetSymbolGetActive(void)
 {
@@ -228,7 +254,9 @@ gboolean gtkCheckButtonPasswordRulesSetSymbolGetActive(void)
 
 /**
  * Manage the signal Toggled for gtkCheckButton_PasswordRulesSet_Symbol
- * It does the necessary actions
+ * It calls gtkCheckButtonPasswordRulesLast, gtkCheckButtonPasswordRulesGetActive, gtkCheckButtonPasswordRulesToggled
+ * If it is the las active checkbox, prevents deactivating
+ * Prints Status message for status level NORMAL
  */
 void gtkCheckButtonPasswordRulesSetSymbolToggled(void)
 {
@@ -246,7 +274,8 @@ void gtkCheckButtonPasswordRulesSetSymbolToggled(void)
 }
 
 /**
- *
+ * Sets the check from ptPassgenConf to gtkCheckButton_PasswordRulesSet_Symbol
+ * Calls gtkCheckButtonPasswordRulesInit
  */
 void gtkCheckButtonPasswordRulesSetSymbolInit(void)
 {
@@ -260,6 +289,7 @@ void gtkCheckButtonPasswordRulesSetSymbolInit(void)
 
 /**
  * Sets the Editable property for "gtkEntry_PasswordRulesSet_Lower"
+ * @param editable The editable property
  */
 void gtkEntryPasswordRulesSetLowerSetEditable(gboolean editable)
 {
@@ -267,7 +297,8 @@ void gtkEntryPasswordRulesSetLowerSetEditable(gboolean editable)
 }
 
 /**
- *
+ * Sets the value and the check from ptPassgenConf to gtkEntry_PasswordRulesSet_Lower
+ * Calls gtkEntryPasswordRulesInit
  */
 void gtkEntryPasswordRulesSetLowerInit(void)
 {
@@ -276,7 +307,8 @@ void gtkEntryPasswordRulesSetLowerInit(void)
 }
 
 /**
- *
+ * Returns the value of the limit from gtkEntry_PasswordRulesSet_Lower
+ * @return The value of the limit
  */
 int gtkEntryPasswordRulesSetLowerGetVal(void)
 {
@@ -290,6 +322,7 @@ int gtkEntryPasswordRulesSetLowerGetVal(void)
 
 /**
  * Returns the Active state for gtkCheckButton_PasswordRulesSet_Lower"
+ * @return True if the CheckButton of Number is Active, otherwise False
  */
 gboolean gtkCheckButtonPasswordRulesSetLowerGetActive(void)
 {
@@ -298,7 +331,9 @@ gboolean gtkCheckButtonPasswordRulesSetLowerGetActive(void)
 
 /**
  * Manage the signal Toggled for gtkCheckButton_PasswordRulesSet_Lower
- * It does the necessary actions
+ * It calls gtkCheckButtonPasswordRulesLast, gtkCheckButtonPasswordRulesGetActive, gtkCheckButtonPasswordRulesToggled
+ * If it is the las active checkbox, prevents deactivating
+ * Prints Status message for status level NORMAL
  */
 void gtkCheckButtonPasswordRulesSetLowerToggled(void)
 {
@@ -316,7 +351,8 @@ void gtkCheckButtonPasswordRulesSetLowerToggled(void)
 }
 
 /**
- *
+ * Sets the check from ptPassgenConf to gtkCheckButton_PasswordRulesSet_Lower
+ * Calls gtkCheckButtonPasswordRulesInit
  */
 void gtkCheckButtonPasswordRulesSetLowerInit(void)
 {
@@ -330,6 +366,7 @@ void gtkCheckButtonPasswordRulesSetLowerInit(void)
 
 /**
  * Sets the Editable property for "gtkEntry_PasswordRulesSet_Upper"
+ * @param editable The editable property
  */
 void gtkEntryPasswordRulesSetUpperSetEditable(gboolean editable)
 {
@@ -337,7 +374,8 @@ void gtkEntryPasswordRulesSetUpperSetEditable(gboolean editable)
 }
 
 /**
- *
+ * Sets the value and the check from ptPassgenConf to gtkEntry_PasswordRulesSet_Upper
+ * Calls gtkEntryPasswordRulesInit
  */
 void gtkEntryPasswordRulesSetUpperInit(void)
 {
@@ -346,7 +384,8 @@ void gtkEntryPasswordRulesSetUpperInit(void)
 }
 
 /**
- *
+ * Returns the value of the limit from gtkEntry_PasswordRulesSet_Upper
+ * @return The value of the limit
  */
 int gtkEntryPasswordRulesSetUpperGetVal(void)
 {
@@ -360,6 +399,7 @@ int gtkEntryPasswordRulesSetUpperGetVal(void)
 
 /**
  * Returns the Active state for gtkCheckButton_PasswordRulesSet_Upper"
+ * @return True if the CheckButton of Number is Active, otherwise False
  */
 gboolean gtkCheckButtonPasswordRulesSetUpperGetActive(void)
 {
@@ -368,7 +408,9 @@ gboolean gtkCheckButtonPasswordRulesSetUpperGetActive(void)
 
 /**
  * Manage the signal Toggled for gtkCheckButton_PasswordRulesSet_Upper
- * It does the necessary actions
+ * It calls gtkCheckButtonPasswordRulesLast, gtkCheckButtonPasswordRulesGetActive, gtkCheckButtonPasswordRulesToggled
+ * If it is the las active checkbox, prevents deactivating
+ * Prints Status message for status level NORMAL
  */
 void gtkCheckButtonPasswordRulesSetUpperToggled(void)
 {
@@ -386,7 +428,8 @@ void gtkCheckButtonPasswordRulesSetUpperToggled(void)
 }
 
 /**
- *
+ * Sets the check from ptPassgenConf to gtkCheckButton_PasswordRulesSet_Upper
+ * Calls gtkCheckButtonPasswordRulesInit
  */
 void gtkCheckButtonPasswordRulesSetUpperInit(void)
 {
@@ -399,7 +442,8 @@ void gtkCheckButtonPasswordRulesSetUpperInit(void)
  *********************************************************** */
 
 /**
- *
+ * Returns the sum of all the limits of the characters sets, whether activated or not
+ * @returns The sum of all the limits of the characters sets
  */
 int gtkSumEntryPasswordRules(void)
 {
@@ -412,7 +456,8 @@ int gtkSumEntryPasswordRules(void)
 }
 
 /**
- *
+ * Returns the value of the limit of the charSetGroup characters set if is activated
+ * @returns The value of the limit of the charSetGroup characters set if is activated, otherwise 0
  */
 int gtkGetActiveEntryPasswordRuleValue(int charSetGroup)
 {
@@ -440,7 +485,8 @@ int gtkGetActiveEntryPasswordRuleValue(int charSetGroup)
 }
 
 /**
- *
+ * Returns the sum of all the limits of the activated characters sets
+ * @returns The sum of the limits of the activated characters sets
  */
 int gtkSumActiveEntryPasswordRules(void)
 {
@@ -455,7 +501,9 @@ int gtkSumActiveEntryPasswordRules(void)
 }
 
 /**
- *
+ * Returns the sum of the limits of the activated characters sets different from charSetGroup
+ * @param charSetGroup The characters set's id to skip in the sum
+ * @returns The sum of the limits of the activated characters sets different from charSetGroup
  */
 int gtkSumRestActiveEntryPasswordRules(int charSetGroup)
 {

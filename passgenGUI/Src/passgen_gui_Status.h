@@ -34,5 +34,4 @@ void gtkTextViewStatusAppend(void);
 void gtkTextViewStatusClear(void);
 void gtkTextViewStatusInit(void);
 
-
 #endif /* SRC_PASSGEN_GUI_STATUS_H_ */

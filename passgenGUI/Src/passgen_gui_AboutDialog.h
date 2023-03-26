@@ -27,6 +27,8 @@
 #include "passgen_glade.h"
 
 /* PROTOTYPES */
+/* passgen_gui_AboutDialog.c */
 void gtkMenuItemHelpAboutShow(void);
+void gtkMenuItemHelpAboutHide(void);
 
 #endif /* SRC_PASSGEN_GUI_ABOUTDIALOG_H_ */

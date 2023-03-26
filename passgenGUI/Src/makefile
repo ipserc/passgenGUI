@@ -119,9 +119,10 @@ passgen_config.o: /usr/include/strings.h passgen_errtra.h passgen_gui.h
 passgen_config.o: /usr/include/getopt.h /usr/include/ctype.h
 passgen_config.o: /usr/include/libgen.h /usr/include/signal.h
 passgen_config.o: /usr/include/math.h passgen_glade.h
-passgen_config.o: passgen_gui_PasswordLength.h passgen_gui_PasswordRules.h
-passgen_config.o: passgen_status.h passgen_gui_Password.h
-passgen_config.o: passgen_gui_MenuBar.h passgen_gui_Status.h
+passgen_config.o: passgen_gui_AboutDialog.h passgen_gui_PasswordLength.h
+passgen_config.o: passgen_gui_PasswordRules.h passgen_status.h
+passgen_config.o: passgen_gui_Password.h passgen_gui_MenuBar.h
+passgen_config.o: passgen_gui_Status.h
 passgen_status.o: passgen_status.h /usr/include/errno.h
 passgen_status.o: /usr/include/features.h /usr/include/stdc-predef.h
 passgen_status.o: /usr/include/stdio.h /usr/include/stdlib.h
@@ -131,9 +132,23 @@ passgen_status.o: /usr/include/libgen.h /usr/include/signal.h
 passgen_status.o: passgen_config.h /usr/include/libconfig.h
 passgen_status.o: /usr/include/asm-generic/errno-base.h passgen_errtra.h
 passgen_status.o: passgen_gui.h /usr/include/math.h passgen_glade.h
-passgen_status.o: passgen_gui_PasswordLength.h passgen_gui_PasswordRules.h
-passgen_status.o: passgen_gui_Password.h passgen_gui_MenuBar.h
-passgen_status.o: passgen_gui_Status.h
+passgen_status.o: passgen_gui_AboutDialog.h passgen_gui_PasswordLength.h
+passgen_status.o: passgen_gui_PasswordRules.h passgen_gui_Password.h
+passgen_status.o: passgen_gui_MenuBar.h passgen_gui_Status.h
+passgen_gui_AboutDialog.o: passgen_gui_AboutDialog.h /usr/include/errno.h
+passgen_gui_AboutDialog.o: /usr/include/features.h /usr/include/stdc-predef.h
+passgen_gui_AboutDialog.o: /usr/include/stdio.h /usr/include/stdlib.h
+passgen_gui_AboutDialog.o: /usr/include/string.h /usr/include/strings.h
+passgen_gui_AboutDialog.o: /usr/include/getopt.h /usr/include/ctype.h
+passgen_gui_AboutDialog.o: /usr/include/libgen.h /usr/include/signal.h
+passgen_gui_AboutDialog.o: /usr/include/math.h passgen_errtra.h
+passgen_gui_AboutDialog.o: passgen_config.h /usr/include/libconfig.h
+passgen_gui_AboutDialog.o: /usr/include/asm-generic/errno-base.h
+passgen_gui_AboutDialog.o: passgen_gui.h passgen_glade.h
+passgen_gui_AboutDialog.o: passgen_gui_PasswordLength.h
+passgen_gui_AboutDialog.o: passgen_gui_PasswordRules.h passgen_status.h
+passgen_gui_AboutDialog.o: passgen_gui_Password.h passgen_gui_MenuBar.h
+passgen_gui_AboutDialog.o: passgen_gui_Status.h
 passgen_gui_Status.o: passgen_gui_Status.h /usr/include/errno.h
 passgen_gui_Status.o: /usr/include/features.h /usr/include/stdc-predef.h
 passgen_gui_Status.o: /usr/include/stdio.h /usr/include/stdlib.h
@@ -143,7 +158,8 @@ passgen_gui_Status.o: /usr/include/libgen.h /usr/include/signal.h
 passgen_gui_Status.o: passgen_errtra.h passgen_glade.h passgen_config.h
 passgen_gui_Status.o: /usr/include/libconfig.h
 passgen_gui_Status.o: /usr/include/asm-generic/errno-base.h passgen_gui.h
-passgen_gui_Status.o: /usr/include/math.h passgen_gui_PasswordLength.h
+passgen_gui_Status.o: /usr/include/math.h passgen_gui_AboutDialog.h
+passgen_gui_Status.o: passgen_gui_PasswordLength.h
 passgen_gui_Status.o: passgen_gui_PasswordRules.h passgen_status.h
 passgen_gui_Status.o: passgen_gui_Password.h passgen_gui_MenuBar.h
 passgen_gui_PasswordLength.o: passgen_gui_PasswordLength.h
@@ -157,6 +173,7 @@ passgen_gui_PasswordLength.o: passgen_glade.h passgen_config.h
 passgen_gui_PasswordLength.o: /usr/include/libconfig.h
 passgen_gui_PasswordLength.o: /usr/include/asm-generic/errno-base.h
 passgen_gui_PasswordLength.o: passgen_gui.h /usr/include/math.h
+passgen_gui_PasswordLength.o: passgen_gui_AboutDialog.h
 passgen_gui_PasswordLength.o: passgen_gui_PasswordRules.h passgen_status.h
 passgen_gui_PasswordLength.o: passgen_gui_Password.h passgen_gui_MenuBar.h
 passgen_gui_PasswordLength.o: passgen_gui_Status.h
@@ -170,7 +187,8 @@ passgen_gui_PasswordRules.o: /usr/include/signal.h passgen_errtra.h
 passgen_gui_PasswordRules.o: passgen_config.h /usr/include/libconfig.h
 passgen_gui_PasswordRules.o: /usr/include/asm-generic/errno-base.h
 passgen_gui_PasswordRules.o: passgen_gui.h /usr/include/math.h
-passgen_gui_PasswordRules.o: passgen_glade.h passgen_gui_PasswordLength.h
+passgen_gui_PasswordRules.o: passgen_glade.h passgen_gui_AboutDialog.h
+passgen_gui_PasswordRules.o: passgen_gui_PasswordLength.h
 passgen_gui_PasswordRules.o: passgen_gui_Password.h passgen_gui_MenuBar.h
 passgen_gui_PasswordRules.o: passgen_gui_Status.h passgen_status.h
 passgen_gui_Password.o: passgen_gui_Password.h /usr/include/errno.h
@@ -182,7 +200,8 @@ passgen_gui_Password.o: /usr/include/libgen.h /usr/include/signal.h
 passgen_gui_Password.o: passgen_errtra.h passgen_glade.h passgen_config.h
 passgen_gui_Password.o: /usr/include/libconfig.h
 passgen_gui_Password.o: /usr/include/asm-generic/errno-base.h passgen_gui.h
-passgen_gui_Password.o: /usr/include/math.h passgen_gui_PasswordLength.h
+passgen_gui_Password.o: /usr/include/math.h passgen_gui_AboutDialog.h
+passgen_gui_Password.o: passgen_gui_PasswordLength.h
 passgen_gui_Password.o: passgen_gui_PasswordRules.h passgen_status.h
 passgen_gui_Password.o: passgen_gui_MenuBar.h passgen_gui_Status.h
 passgen_gui_MenuBar.o: passgen_gui_MenuBar.h /usr/include/errno.h
@@ -194,7 +213,7 @@ passgen_gui_MenuBar.o: /usr/include/libgen.h /usr/include/signal.h
 passgen_gui_MenuBar.o: passgen_config.h /usr/include/libconfig.h
 passgen_gui_MenuBar.o: /usr/include/asm-generic/errno-base.h passgen_errtra.h
 passgen_gui_MenuBar.o: passgen_gui.h /usr/include/math.h passgen_glade.h
-passgen_gui_MenuBar.o: passgen_gui_PasswordLength.h
+passgen_gui_MenuBar.o: passgen_gui_AboutDialog.h passgen_gui_PasswordLength.h
 passgen_gui_MenuBar.o: passgen_gui_PasswordRules.h passgen_status.h
 passgen_gui_MenuBar.o: passgen_gui_Password.h passgen_gui_Status.h
 passgen_gui.o: passgen_gui.h /usr/include/errno.h /usr/include/features.h
@@ -205,8 +224,9 @@ passgen_gui.o: /usr/include/ctype.h /usr/include/libgen.h
 passgen_gui.o: /usr/include/signal.h /usr/include/math.h passgen_errtra.h
 passgen_gui.o: passgen_config.h /usr/include/libconfig.h
 passgen_gui.o: /usr/include/asm-generic/errno-base.h passgen_glade.h
-passgen_gui.o: passgen_gui_PasswordLength.h passgen_gui_PasswordRules.h
-passgen_gui.o: passgen_status.h passgen_gui_Password.h passgen_gui_MenuBar.h
+passgen_gui.o: passgen_gui_AboutDialog.h passgen_gui_PasswordLength.h
+passgen_gui.o: passgen_gui_PasswordRules.h passgen_status.h
+passgen_gui.o: passgen_gui_Password.h passgen_gui_MenuBar.h
 passgen_gui.o: passgen_gui_Status.h
 passgen_params.o: passgen_params.h /usr/include/errno.h
 passgen_params.o: /usr/include/features.h /usr/include/stdc-predef.h
@@ -223,6 +243,7 @@ passgen.o: /usr/include/signal.h /usr/include/time.h randomize.h
 passgen.o: passgen_errtra.h passgen_gui_PasswordLength.h passgen_glade.h
 passgen.o: passgen_config.h /usr/include/libconfig.h
 passgen.o: /usr/include/asm-generic/errno-base.h passgen_gui.h
-passgen.o: /usr/include/math.h passgen_gui_PasswordRules.h passgen_status.h
+passgen.o: /usr/include/math.h passgen_gui_AboutDialog.h
+passgen.o: passgen_gui_PasswordRules.h passgen_status.h
 passgen.o: passgen_gui_Password.h passgen_gui_MenuBar.h passgen_gui_Status.h
 passgen.o: passgen_params.h

@@ -12,7 +12,8 @@
  *********************************************************** */
 
 /**
- *
+ * Appends a new line into gtkTextView_Status control
+ * @param text The ew line text
  */
 void gtkTextViewStatusAppendText(char * text)
 {
@@ -28,7 +29,7 @@ void gtkTextViewStatusAppendText(char * text)
 }
 
 /**
- *
+ * Shortcut to gtkTextViewStatusAppendText for using the global variable status
  */
 void gtkTextViewStatusAppend(void)
 {
@@ -36,7 +37,7 @@ void gtkTextViewStatusAppend(void)
 }
 
 /**
- *
+ * Clears the gtkTextView_Status
  */
 void gtkTextViewStatusClear(void)
 {
@@ -52,7 +53,7 @@ void gtkTextViewStatusClear(void)
 }
 
 /**
- *
+ * Initializes the gtkTextView_Status
  */
 void gtkTextViewStatusInit(void)
 {

@@ -14,7 +14,8 @@
  *********************************************************** */
 
 /**
- *
+ * Executes the load action associated to the gtkMenuItemFileLoad
+ * It does the passgenConfigRead and follows with the gtkInitPassgen
  */
 void gtkMenuItemFileLoadActivate(void)
 {
@@ -27,7 +28,9 @@ void gtkMenuItemFileLoadActivate(void)
 }
 
 /**
- *
+ * Executes the save action associated to the gtkMenuItemFilesave
+ * Does a gtkCheckRules and a writePassgenConfig
+ * Prints Status message for status level BASIC
  */
 void gtkMenuItemFileSaveActivate(void)
 {
@@ -39,7 +42,6 @@ void gtkMenuItemFileSaveActivate(void)
 		return;
 	}
 
-	//createPassgenConf(char * pgnHome, passgenConf_t * ptPassgenConf)
 	if (writePassgenConfig(passgenPath(ptPassgenConf)))
 	{
 		printStatus(BASIC, "%s Configuration File saved successfully", genpassProgramName());
@@ -47,7 +49,7 @@ void gtkMenuItemFileSaveActivate(void)
 }
 
 /**
- *
+ * Sets the label of the gtkFrame_StatusInfo with the text associated to the Status Level
  */
 void gtkMenuItemStatusLevelSetLabel(int level)
 {
@@ -74,7 +76,7 @@ void gtkMenuItemStatusLevelSetLabel(int level)
 }
 
 /**
- *
+ * Sets the label of the gtkFrame_StatusInfo for BASIC
  */
 void gtkMenuItemStatusLevelBasicActivate(void)
 {
@@ -82,7 +84,7 @@ void gtkMenuItemStatusLevelBasicActivate(void)
 }
 
 /**
- *
+ * Sets the label of the gtkFrame_StatusInfo for NORMAL
  */
 void gtkMenuItemStatusLevelNormalActivate(void)
 {
@@ -90,7 +92,7 @@ void gtkMenuItemStatusLevelNormalActivate(void)
 }
 
 /**
- *
+ * Sets the label of the gtkFrame_StatusInfo for HIGH
  */
 void gtkMenuItemStatusLevelHighActivate(void)
 {
@@ -99,7 +101,7 @@ void gtkMenuItemStatusLevelHighActivate(void)
 
 /**
  * Creates a group and join the GtkRadioMenuItem in it
- * Not required. Implemented in Glade
+ * Not required. Implemented directly in Glade
  */
 void gtkMenuItemStatusGroupSet(void)
 {

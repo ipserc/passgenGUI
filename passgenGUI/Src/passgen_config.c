@@ -9,10 +9,15 @@
 
 #define __DEBUG__ false
 
+/**
+ * Array with the names of the password preset length
+ */
 char passwordLengthPresetsNames[LAST_PRESET][10] = {"USER", "PIN", "MEDIUM", "LONG", "ULTRA", "PARANOIC"};
 
 /**
- *
+ * Returns the name of the password preset length corresponding with th id
+ * @param id The id of the password preset length
+ * @return The name of the password preset length passed in id
  */
 char * getPasswordLengthPresetsName(int idx)
 {
@@ -20,9 +25,9 @@ char * getPasswordLengthPresetsName(int idx)
 }
 
 /**
- * Return the idx of the preset name passed
+ * Return the id of the preset name passed
  * @param name The preset name passed
- * @return The index in the list
+ * @return The index in the list corresponding with the name passed if found, otherwise -1
  */
 int getPasswordLengthPresetsNameIdx(char * name)
 {
@@ -34,12 +39,15 @@ int getPasswordLengthPresetsNameIdx(char * name)
 }
 
 /**
- *
+ * Array with the password preset lengths
+ * USER is assigned to 1 but the length is arbitrary
  */
 int  passwordLengthPresetsSizes[LAST_PRESET] = {1, 4, 8, 16, 32, 64};
 
 /**
- *
+ * Returns the the password preset length of the id passed
+ * @param id The id of the password preset length
+ * @return The length of the password preset passed in id
  */
 int getPasswordLengthPresetsSize(int idx)
 {
@@ -337,7 +345,7 @@ bool configLoad(char * pgnHome, passgenConf_t * ptPassgenConf)
 }
 
 /**
- *
+ * Prints through the std output the content of the passgen config file
  */
 void printPassgenConfig(void)
 {
@@ -347,13 +355,15 @@ void printPassgenConfig(void)
 }
 
 /**
- *
+ * Returns the passgen config path
+ * If the passgen config file is not found, it creates a new one with the default settings
+ * @param ptPassgenConf Pointer to the passgenConf_t global variable with the information of the settings
+ * @return The path to the config file
  */
 char * passgenPath(passgenConf_t * ptPassgenConf)
 {
 	struct stat s;
 	char home[PGNHOMELEN] = "";
-	//char format[50];
 	char * pgnHome;
 
 	if (!(pgnHome = malloc(PGNHOMELEN)))
@@ -407,6 +417,7 @@ char * passgenPath(passgenConf_t * ptPassgenConf)
  * Try to read the config file passgen.conf
  * If this file doesn't exist calls createPassgenConf with the full path to create the file
  * If the file exists loads its content
+ * @param ptPassgenConf Pointer to the passgenConf_t global variable with the information of the settings
  */
 void passgenConfigRead(passgenConf_t * ptPassgenConf)
 {
@@ -424,6 +435,8 @@ void passgenConfigRead(passgenConf_t * ptPassgenConf)
 
 /**
  * Looks up for a specific field of passgenConf_t structure
+ * @param passgenConfItems_t passgenConfItem the item of the passgenConf_t that wants to get
+ * @return The value of the passgenConfItem
  */
 void * lookupPassgenConfig(passgenConfItems_t passgenConfItem)
 {
@@ -461,7 +474,9 @@ void * lookupPassgenConfig(passgenConfItems_t passgenConfItem)
 }
 
 /**
- *
+ * Returns the length of the password preset from its name
+ * @param name The preset name passed
+ * @return The length of the password
  */
 int passwordLengthPresetNameSize(char * name)
 {
@@ -470,7 +485,9 @@ int passwordLengthPresetNameSize(char * name)
 }
 
 /**
- *
+ * Returns the length of the password preset from its id
+ * @param id The preset id passed from 0 to 5 	USER, PIN, MEDIUM, LONG, ULTRA, PARANOIC
+ * @return The length of the password
  */
 int passwordLengthPresetIdSize(preset_idx id)
 {
@@ -493,7 +510,8 @@ int passwordLengthPresetIdSize(preset_idx id)
 }
 
 /**
- *
+ * Check if name passed is the one of  USER
+ * Returns True if name passed is the USER, otherwise False
  */
 bool isUSER(char * name)
 {

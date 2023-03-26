@@ -28,7 +28,7 @@ void printStatus(enum STATUS_LEVEL level, const char * fmtstr,...)
 	vsprintf(status, fmtstr, arglist);
 	va_end(arglist);
 
-	if (userInterface == CLI)
+	if (userInterface == CCI)
 	{
 		puts(status);
 	}
@@ -56,7 +56,9 @@ int getStatusIdFromName(const char * inStatusName)
 }
 
 /**
- *
+ * Gets the status level name from the id
+ * @param status The id of the status level
+ * @return The status level name
  */
 char * getStatusNameFromId(enum STATUS_LEVEL status)
 {
@@ -64,7 +66,8 @@ char * getStatusNameFromId(enum STATUS_LEVEL status)
 }
 
 /**
- *
+ * Gets the current status level name
+ * @return The current status level name
  */
 char * getCurrentStatusName(void)
 {

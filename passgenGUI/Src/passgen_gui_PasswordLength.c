@@ -48,21 +48,24 @@ void gtkEntryPasswordLengthSizeEditable(gboolean editable)
 }
 
 /**
- *
+ * Updates gtkEntry_PasswordLengthSize with the value passed
+ * @param value The text that to set in gtkEntry_PasswordLengthSize
  */
 void gtkEntryPasswordLengthSizeUpdate(const gchar * value)
 {
 	GtkEntry * gtkEntryPasswordLengthSize = GTK_ENTRY(gtk_builder_get_object(getGtkBuilder(), "gtkEntry_PasswordLengthSize"));
 
-	if (__DEBUG__) TRACE("gtk_entry_get_value_as_int: %s", gtk_entry_get_text((GtkEntry *) gtkEntryPasswordLengthSize));
-	if (__DEBUG__) TRACE("lookupPassgenConfig(passwordLengthSize): %s", value);
+	if (__DEBUG__)
+	{
+		TRACE("gtk_entry_get_value_as_int: %s", gtk_entry_get_text((GtkEntry *) gtkEntryPasswordLengthSize));
+		TRACE("lookupPassgenConfig(passwordLengthSize): %s", value);
+	}
 
-	gtk_entry_set_text((GtkEntry *) gtkEntryPasswordLengthSize,
-						(const gchar *) value);
+	gtk_entry_set_text((GtkEntry *) gtkEntryPasswordLengthSize, (const gchar *) value);
 }
 
 /**
- *
+ * Initializes gtkEntry_PasswordLengthSize with the value of the password preset
  */
 void gtkEntryPasswordLengthInit(void)
 {
@@ -75,8 +78,7 @@ void gtkEntryPasswordLengthInit(void)
 	if (__DEBUG__) TRACE("Entry Size:%d", Size);
 
 	sprintf(strSize, "%d", Size);
-	gtk_entry_set_text(	(GtkEntry *) gtkEntryPasswordLengthSize,
-						(const gchar *) strSize );
+	gtk_entry_set_text(	(GtkEntry *) gtkEntryPasswordLengthSize, (const gchar *) strSize );
 }
 
 /* ***********************************************************
@@ -84,7 +86,8 @@ void gtkEntryPasswordLengthInit(void)
  *********************************************************** */
 
 /**
- *
+ * Executes the actions required when the gtkComboBoxText_PasswordLengthPreset changes its value
+ * Calls gtkEntryPasswordLengthSizeEditable, passwordLengthPresetIdSize and gtkEntryPasswordLengthSizeUpdate
  */
 void gtkComboBoxTextPasswordLengthPresetChanged(void)
 {

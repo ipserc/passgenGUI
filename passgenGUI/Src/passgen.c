@@ -27,11 +27,11 @@
 //------------------------------------------
 //          PROGRAM FACTS SECTION
 //------------------------------------------
-#define VERSION		"1.0.0 (2023_0209_2233)"
+#define VERSION		"1.0.0 (2023_0326_1050)"
 #define AUTHOR		"ipserc"
 #define CONTACT 	"https://github.com/ipserc"
 #define CREATION	"2023/02/09"
-#define COMPILATION	"2023/02/09"
+#define COMPILATION	"2023/03/26"
 #define PROGRAM		"passgen"
 #define MODULE		__FILE__
 #define LICENSE		"GNU General Public License v3.0"
@@ -97,7 +97,9 @@ void putsGenpassVersion(void)
 //------------------------------------------
 
 /**
- *
+ * Takes a string with a set of characters and returns a new string with the characters in different order
+ * @param array The initial set of characters
+ * @return A new string with set of characters in a different order
  */
 char * shuffleCharacterSet(const char * array)
 {
@@ -136,6 +138,7 @@ char * shuffleCharacterSet(const char * array)
 /**
  * Returns the boolean value as a string
  * @param value The boolean to decode
+ * @return The boolean value as a string
  */
 char * boolToString(bool value)
 {
@@ -147,7 +150,7 @@ char * boolToString(bool value)
  ************************************************************************ */
 
 /**
- *
+ * Initializes at zero the GRPCHRS_LIMIT array for each group of characters
  */
 void initGrpChrLimit(void)
 {
@@ -156,7 +159,8 @@ void initGrpChrLimit(void)
 }
 
 /**
- *
+ * Returns the sum of the limits of all characters group from it value given from the GRPCHRS_LIMIT array
+ * @return the sum of the limits of all characters group
  */
 int sumGrpChrLimit(void)
 {
@@ -173,7 +177,9 @@ int sumGrpChrLimit(void)
 }
 
 /**
- *
+ * Returns the limit for a specific character group taken from the GRPCHRS_LIMIT array
+ * @param charGroup The id of the character group
+ * @return The limit for the character group
  */
 int getGrpChrLimit(int charGroup)
 {
@@ -181,7 +187,9 @@ int getGrpChrLimit(int charGroup)
 }
 
 /**
- *
+ * Indicates if a specific character group is excluded for contribute in the password generation. The value is taken from the EXCLUDED_GRPS array
+ * @param charGroup The id of the character group
+ * @return True if the character group is excluded, False otherwise
  */
 bool isGrpChrExcluded(int charGroup)
 {
@@ -198,13 +206,13 @@ bool isGrpChrExcluded(int charGroup)
 }
 
 /**
- *
+ * Shows the excluded flag of the character groups. Only for debugging proposes
  */
 void traceGrpChrExcluded(void)
 {
 	if(!__DEBUG__) return;
 
-	if (__DEBUG__) TRACE("START traceGrpChrExcluded(void)", "");
+	TRACE("START traceGrpChrExcluded(void)", "");
 
 	char estado[20];
 	for(int i = 0; i < GROUPS_NBR-1; ++i)
@@ -220,11 +228,12 @@ void traceGrpChrExcluded(void)
 		}
 		TRACE("EXCLUDED_GRPS[%d]: %s : %s", i, decodeGroupType(EXCLUDED_GRPS[i]), estado);
 	}
-	if (__DEBUG__) TRACE("END traceGrpChrExcluded(void)", "");
+	TRACE("END traceGrpChrExcluded(void)", "");
 }
 
 /**
- *
+ * Calculates the sum of all the limits of the character groups that are not excluded
+ * @return the total sum of the characters limit
  */
 int sumActiveGrpChrLimit(void)
 {
@@ -245,7 +254,9 @@ int sumActiveGrpChrLimit(void)
 }
 
 /**
- *
+ * Calculates the sum of all the limits of the character groups that are not excluded except the character group passed as argument
+ * @param charGroup The characters group that is not going to be part of the sum
+ * @return the sum of the characters limit different than the parameter charGroup
  */
 int sumRestActiveGrpChrLimit(int charGroup)
 {
@@ -289,11 +300,14 @@ bool setGrpChrLimit(int charGroup, int value)
 }
 
 /**
- * Chequea que la vlidez del límite al número de caracteres del grupo de caracteres
- * Devuelve false si el grupo de caracteres está excluído, si el valor es menor que 1
- * o si la suma con el resto de valores supera la longitud de la password a generar y
- * el número de caracteres es mayor que 1/4 de la longitud de la password
- */
+  * Check the validity of the limit to the number of characters in the character set
+  * Returns false if the character set is excluded, if the value is less than 1
+  * or if the sum with the rest of the values exceeds the length of the password to be generated and
+  * the number of characters is greater than 1/4 of the length of the password
+  * @param charGroup The id of the character set to be checked
+  * @param value The value of the characters limit of the charGroup
+  * @return True if the check match the rules, false otherwise
+  */
 bool checkGrpChrLimit(int charGroup, int value)
 {
 	if (__DEBUG__)
@@ -325,7 +339,7 @@ bool checkGrpChrLimit(int charGroup, int value)
 }
 
 /**
- *
+ * Does all the checks required for the passwored rules defined
  */
 bool checkPasswordRules(void)
 {
@@ -353,7 +367,7 @@ bool checkPasswordRules(void)
  ************************************************************************ */
 
 /**
- *
+ * Reset the counter of characters used for each character set
  */
 void resetCharGroupCounter(void)
 {
@@ -367,7 +381,9 @@ void resetCharGroupCounter(void)
  * CHAR GROUP SECTION
  ************************************************************************ */
 /**
- *
+ * Returns a random character from the set indicated from the parameter setOfChars
+ * @param setOfChars The set of characters used to select one of them
+ * @return The character selected randomly from the chacaters set
  */
 char getCharFrom(char * setOfChars)
 {
@@ -381,7 +397,9 @@ char getCharFrom(char * setOfChars)
 }
 
 /**
- *
+ * Private function that indicates if the character set has reached the limit of its characters
+ * @param charGroup Set of characters to evaluate
+ * @return True if the limit has been reached, False otherwise
  */
 /* private */ static bool _hasCharsRequired(int charGroup)
 {
@@ -408,7 +426,10 @@ char getCharFrom(char * setOfChars)
 }
 
 /**
- *
+ * Indicates if the character set has reached the limit of its characters
+ * Prints a status message for status level HIGH
+ * @param charGroup Set of characters to evaluate
+ * @return True if the limit has been reached, False otherwise
  */
 bool hasCharsRequired(int charGroup)
 {
@@ -420,17 +441,21 @@ bool hasCharsRequired(int charGroup)
 /* ************************************************************************
  * EXCLUDED GROUP SECTION
  ************************************************************************ */
+
 /**
- *
+ * Initializes the excluded groups array to NONE_GROUP mark. This array keeps the sets of characters which have been marked as excluded
  */
 void initExcludedGroups(void)
 {
-	for (int i = 0; i < GROUPS_NBR-1; ++i)
+	for (int i = UPPER_CASE_GROUP; i < GROUPS_NBR-1; ++i)
 		EXCLUDED_GRPS[i] = NONE_GROUP;
 }
 
 /**
- *
+ * Appends a set of characters to the excluded array. A maximum of three sets can be appended
+ * Prints a status message for status level HIGH
+ * @param charGroup Te set of characters to be excluded
+ * @return True if success, False if the set of characters couldn't be appended
  */
 bool appendExcludedGroups(int charGroup)
 {
@@ -453,7 +478,10 @@ bool appendExcludedGroups(int charGroup)
 }
 
 /**
- *
+ * Checks if the set of characters is excluded or not
+ * Prints a status message for status level HIGH
+ * @param charGroup The set of characters to be checked
+ * @return True if the set of characters is marked as excluded, otherwise False
  */
 bool inExcludedGroups(int charGroup)
 {
@@ -470,7 +498,8 @@ bool inExcludedGroups(int charGroup)
 }
 
 /**
- *
+ * Checks if the only set of characters selected is the one of symbols
+ * @return True if only symbols is selected, False otherwise
  */
 bool onlySymbols(void)
 {
@@ -499,13 +528,13 @@ bool onlySymbols(void)
 }
 
 /**
- *
+ * Prints a status message indicating the sets of characters excluded. Status level BASIC
  */
 void printExcludedGroups(void)
 {
 	for (int i = 0; i < GROUPS_NBR-1; ++i)
 	{
-		if (EXCLUDED_GRPS[i] != NONE_GROUP) printf("%s is excluded\n", decodeGroupType(EXCLUDED_GRPS[i]));
+		if (EXCLUDED_GRPS[i] != NONE_GROUP) printStatus(BASIC, "%s is excluded\n", decodeGroupType(EXCLUDED_GRPS[i]));
 	}
 
 }
@@ -515,11 +544,15 @@ void printExcludedGroups(void)
  ************************************************************************ */
 
 /**
- *
+ * Selects a set of charates randomly from a group limited by nbrItemsGroup and not using the excluded sets
+ * @param nbrItemsGroup the number of sets to use. The sets are from 0 to 3, UPPER_CASE_GROUP, LOWER_CASE_GROUP, NUMBR_CASE_GROUP and SYMBL_CASE_GROUP
+ * return Th id of the set of characters selected
  */
 int randomGroupSelector(int nbrItemsGroup)
 {
 	int charGroup = 0;
+
+	if (nbrItemsGroup > GROUPS_NBR-1) nbrItemsGroup = GROUPS_NBR-1;
 	do
 	{
 		charGroup = naturalRandomNbr(nbrItemsGroup);
@@ -529,7 +562,9 @@ int randomGroupSelector(int nbrItemsGroup)
 }
 
 /**
- *
+ * Decodes the id of a set of charaters to a name in human language
+ * @param charGroup The id of the set of charaters to decode
+ * @return The string with the name of the set of characters
  */
 char * decodeGroupType(int charGroup)
 {
@@ -559,8 +594,9 @@ char * decodeGroupType(int charGroup)
  ************************************************************************ */
 
 /**
- * Password generator
- * @param passContainer
+ * Password generator engine
+ * @param passContainer The string to stores the password
+ * @return The string with the password generated
  */
 char * genPass(char * passContainer)
 {
@@ -694,7 +730,9 @@ char * genPass(char * passContainer)
 }
 
 /**
- *
+ * Sets the settings stored in the global variable ptPassgenConf to the spare global variables used in genpass, and other functions
+ * The global spare variables are PASS_LEN, XCLUDED_GRPS[], GRPCHRS_LIMIT[]
+ * This variables should be removed in following versions
  */
 void setPassgenConfCaseRule2Values(void)
 {
@@ -789,7 +827,7 @@ char * passgenConf2Rules(void)
 
 
 /**
- * Runs passgen in Graphic User Interface mode
+ * Runs passgen in Graphic User Interface mode (GUI)
  */
 void passgenGUI(void)
 {
@@ -821,7 +859,7 @@ void passgenGUI(void)
 }
 
 /**
- * Runs passgen in Command Console Interface mode
+ * Runs passgen in Command Console Interface mode (CCI)
  */
 int passgenCCI(void)
 {
@@ -870,11 +908,11 @@ int main(int argc, char * argv[])
 	sprintf(ptPassgenConf->appName, "%s", basename(argv[0]));
 	if (__DEBUG__ ) printPassgenConfig();
 	/* ***************************************************** */
-	/* 				COMMAND  LINE  INTERFACE				 */
+	/* 				COMMAND  CONSOLE  INTERFACE				 */
 	/* ***************************************************** */
 	if (argc > 1)
 	{
-		userInterface = CLI;
+		userInterface = CCI;
 		psgParams_t * psgParams = readPsgParams(argc, argv);
 
 		if (psgParams->help)

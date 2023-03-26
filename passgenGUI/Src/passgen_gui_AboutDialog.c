@@ -8,17 +8,16 @@
 #include "passgen_gui_AboutDialog.h"
 
 /**
- *
+ * Presents the gtkAboutDialog_passgen
  */
 void gtkMenuItemHelpAboutShow(void)
 {
-	GtkDialog * gtkDialogPassgen = GTK_DIALOG(gtk_builder_get_object(getGtkBuilder(), "gtkDialog_passgen"));
 	GtkAboutDialog * gtkAboutDialogPassgen = GTK_ABOUT_DIALOG(gtk_builder_get_object(getGtkBuilder(), "gtkAboutDialog_passgen"));
 	gtk_window_present((GtkWindow *) gtkAboutDialogPassgen);
 }
 
 /**
- *
+ * Hides the gtkAboutDialog_passgen
  */
 void gtkMenuItemHelpAboutHide(void)
 {

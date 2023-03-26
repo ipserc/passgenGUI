@@ -35,5 +35,4 @@ void gtkEntryPasswordLengthInit(void);
 void gtkComboBoxTextPasswordLengthPresetChanged(void);
 void gtkComboBoxTextPasswordLengthPresetInit(void);
 
-
 #endif /* SRC_PASSGEN_GUI_PASSWORDLENGTH_H_ */

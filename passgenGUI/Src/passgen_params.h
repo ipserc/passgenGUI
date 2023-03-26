@@ -44,5 +44,4 @@ psgParams_t *setPsgParams(void);
 psgParams_t *getPsgParams(void);
 psgParams_t *readPsgParams(int argc, char *argv[]);
 
-
 #endif /* SRC_PASSGEN_PARAMS_H_ */

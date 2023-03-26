@@ -37,5 +37,4 @@ void gtkMenuItemStatusLevelNormalActivate(void);
 void gtkMenuItemStatusLevelHighActivate(void);
 void gtkMenuItemStatusGroupSet(void);
 
-
 #endif /* SRC_PASSGEN_GUI_MENUBAR_H_ */

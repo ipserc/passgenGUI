@@ -22,9 +22,9 @@ int errno;
 #define WARNINGICON "50697_121100_warning.png"
 #define WARNINGMSGLEN 600
 #define WARNING01 "No capture devices found. Unable to record sound."
-#define WARNING02 "Incorrect zhavam config file. Unable to parse it."
-#define WARNING03 "No access key found. Please introduce one into zhavam config file."
-#define WARNING04 "zhavam cofig file does not exist. creating a new one from scratch with default values. Please set the acrcloud access credentials."
+#define WARNING02 "Incorrect passgen config file. Unable to parse it."
+#define WARNING03 "No access key found. Please introduce one into passgen config file."
+#define WARNING04 "passgen config file does not exist. creating a new one from scratch with default values. Please set the acrcloud access credentials."
 #define WARNING05 "Unable to open %s"
 #define WARNING06 "ACRClod account is not set. Please go to https://www.acrcloud.com and create an account to use Zhavam."
 #define WARNING07 "A component of path does not name an existing file or path is an empty string."
@@ -35,7 +35,7 @@ int errno;
 #define WARNING12 "WARNING12"
 #define WARNING13 "Unable to open file:%s"
 #define WARNING14 "Unable to create file:%s"
-#define WARNING15 "Unable to get zhavam home:%s"
+#define WARNING15 "Unable to get passgen home:%s"
 #define WARNING16 "Could not parse file %s"
 #define WARNING17 "Unknown device driver controller, may be it is no t set."
 #define WARNING18 "WARNING18"
@@ -45,8 +45,8 @@ int errno;
  * ERROR icon, message length aand messages
  */
 #define ERRORMSGLEN 600
-#define ERROR01 ".zhavam exist but it is not a directory %s"
-#define ERROR02 "zhavam.conf exists but it is not a file %s"
+#define ERROR01 ".passgen exist but it is not a directory %s"
+#define ERROR02 "passgen.conf exists but it is not a file %s"
 #define ERROR03 "ERROR03"
 #define ERROR04 "ERROR04"
 #define ERROR05 "Invalid directory:%s %s"
@@ -79,6 +79,5 @@ int funcWarning(const char *fileName, const char *functionName, const int lineNb
 void wWarning(const char *fmtstr, ...);
 int statErrorMngr(int statError);
 int mkdirErrorMngr(int mkdirError);
-
 
 #endif /* SRC_PASSGEN_ERRTRA_H_ */

@@ -51,7 +51,8 @@ GtkBuilder * getGtkBuilder(void)
 }
 
 /**
- *
+ * Static "private method" to set or get the static variable GtkClipboard which has the capture in the clipbooard
+ * @param method The method to us, 0 set other values get
  */
 static GtkClipboard * gtkclipboard(int method)
 {
@@ -66,7 +67,7 @@ static GtkClipboard * gtkclipboard(int method)
 }
 
 /**
- *
+ * Shortcut to method set for gtkclipboard
  */
 GtkClipboard * setClipboard(void)
 {
@@ -74,7 +75,7 @@ GtkClipboard * setClipboard(void)
 }
 
 /**
- *
+ * Shortcut to method get for gtkclipboard
  */
 GtkClipboard * getClipboard(void)
 {
@@ -82,7 +83,8 @@ GtkClipboard * getClipboard(void)
 }
 
 /**
- *
+ * Gets the user_datav
+ * @return The user data
  */
 user_data_t * gtkUserData(void)
 {
@@ -147,7 +149,9 @@ void gtkPassgenFileQuit(GtkImageMenuItem * fileQuit, gpointer user_data)
 }
 
 /**
- *
+ * Set the editable property (sensitive) for a determinated widget to the value given in editable
+ * @param gtkWidget The widget to opertae with
+ * @param editable True for editable, False to dimiss
  */
 void gtkWidgetSetEditable(GtkWidget * gtkWidget, gboolean editable)
 {
@@ -169,6 +173,11 @@ void gtkWidgetSetEditable(GtkWidget * gtkWidget, gboolean editable)
 
 /**
  * Reads the status and values of the Password Rules Set Frame from the GUI and put them inside the passgenConf system variable
+ * Calls getPassgenConf, gtkEntryPasswordLengthSizeGet
+ * Calls gtkCheckButtonPasswordRulesSetUpperGetActive, gtkEntryPasswordRulesSetUpperGetVal
+ * Calls gtkCheckButtonPasswordRulesSetLowerGetActive, gtkEntryPasswordRulesSetLowerGetVal
+ * Calls gtkCheckButtonPasswordRulesSetNumberGetActive, gtkEntryPasswordRulesSetNumberGetVal
+ * Calls gtkCheckButtonPasswordRulesSetSymbolGetActive, gtkEntryPasswordRulesSetSymbolGetVal
  */
 void passgenGtkSettings2PassgenConf(void)
 {
@@ -215,6 +224,7 @@ void passgenGtkSettings2PassgenConf(void)
 
 /**
  * Does the required work to generate the password from the GUI
+ * Calls gtkEntryPasswordTextClear, gtkTextViewStatusClear, passgenConf2Rules and gtkEntryPasswordTextSet
  */
 void gtkPasswordGenerate(void)
 {
@@ -236,7 +246,8 @@ void gtkPasswordGenerate(void)
 }
 
 /**
- * Checks the given rules to generate the password and reports on the errors detected
+ * DEPRECATED Checks the given rules to generate the password and reports on the errors detected
+ * See gtkCheckPasswordRules
  */
 gboolean _gtkCheckPasswordRules(void)
 {
@@ -269,6 +280,9 @@ gboolean gtkCheckPasswordRules(void)
 /**
  * Shortcut for passgen.c checkGrpChrLimit
  * Modify the used method here  to propagate it for all the source code
+ * @param charSetGroup The id set of characters to operate
+ * @param value The value of the limit
+ * @return True if succeed, False otherwise
  */
 gboolean gtkCheckGrpChrLimit(int charSetGroup, int value)
 {
@@ -277,6 +291,7 @@ gboolean gtkCheckGrpChrLimit(int charSetGroup, int value)
 
 /**
  * Puts the values defined in the GUI to generate the password in the variables used by the password generation engine
+ * Calls initGrpChrLimit, initExcludedGroups, passgenGtkSettings2PassgenConf
  */
 void passgenConfRulesValuesSet(void)
 {
@@ -306,7 +321,12 @@ void passgenConfRulesValuesSet(void)
 }
 
 /**
- *
+ * Does the xheck ofthe values and setting for password generation
+ * Calls gtkEntryPasswordTextClear(); gtkTextViewStatusClear(); passgenGtkSettings2PassgenConf(); passgenConfRulesValuesSet(); printExcludedGroups();
+ * Calls gtkCheckPasswordRules, gtkGetActiveEntryPasswordRuleValue, gtkCheckGrpChrLimit
+ * Prints Status for status level BASIC
+ * Changes the level of status to BASIC during ist execution, and restores it at the end
+ * @return True if the check didn't detect any erro, False otherwise
  */
 gboolean gtkCheckRules(void)
 {
@@ -373,6 +393,12 @@ gboolean gtkCheckRules(void)
 
 /**
  * Does the required actions to initialize passgen from the GUI
+ * Calls gtkMenuItemStatusLevelSetLabel, setClipboard, gtkComboBoxTextPasswordLengthPresetInit, gtkEntryPasswordLengthInit
+ * Calls gtkCheckButtonPasswordRulesSetUpperInit, gtkEntryPasswordRulesSetUpperInit
+ * Calls gtkCheckButtonPasswordRulesSetLowerInit, gtkEntryPasswordRulesSetLowerInit
+ * Calls gtkCheckButtonPasswordRulesSetNumberInit, gtkEntryPasswordRulesSetNumberInit
+ * Calls gtkCheckButtonPasswordRulesSetSymbolInit, gtkEntryPasswordRulesSetSymbolInit
+ * Calls gtkEntryPasswordTextInit, gtkTextViewStatusClear
  */
 void gtkInitPassgen(void)
 {
@@ -403,7 +429,24 @@ void gtkInitPassgen(void)
 }
 
 /**
- * GTK Signals Connect function
+ * GTK Signals Connect function. Connetc the action from the gtk widgets to its methods
+ * G_OBJECT(passgenmMainWindow), "destroy", G_CALLBACK(gtkClosePassgen),
+ * G_OBJECT(fileQuit), "activate", G_CALLBACK(gtkPassgenFileQuit)
+ * G_OBJECT(gtkComboBoxTextPasswordLengthPreset), "changed", G_CALLBACK(gtkComboBoxTextPasswordLengthPresetChanged
+ * G_OBJECT(gtkCheckButtonPasswordRulesSetUpper), "toggled", G_CALLBACK(gtkCheckButtonPasswordRulesSetUpperToggled)
+ * G_OBJECT(gtkCheckButtonPasswordRulesSetLower), "toggled", G_CALLBACK(gtkCheckButtonPasswordRulesSetLowerToggled)
+ * G_OBJECT(gtkCheckButtonPasswordRulesSetSymbol), "toggled", G_CALLBACK(gtkCheckButtonPasswordRulesSetSymbolToggled)
+ * G_OBJECT(gtkCheckButtonPasswordRulesSetNumber), "toggled", G_CALLBACK(gtkCheckButtonPasswordRulesSetNumberToggled)
+ * G_OBJECT(gtkButtonPasswordCopy), "clicked", G_CALLBACK(gtkEntryPasswordTextCopy)
+ * G_OBJECT(gtkButtonPasswordGenerate), "clicked", G_CALLBACK(gtkPasswordGenerate)
+ * G_OBJECT(gtkButtonCheckRules), "clicked", G_CALLBACK(gtkCheckRules)
+ * G_OBJECT(gtkMenuItemFileLoad), "activate", G_CALLBACK(gtkMenuItemFileLoadActivate)
+ * G_OBJECT(gtkMenuItemEditCopy), "activate", G_CALLBACK(gtkEntryPasswordTextCopy)
+ * G_OBJECT(gtkMenuItemEditCopy), "activate", G_CALLBACK(gtkEntryPasswordTextCopy)
+ * G_OBJECT(gtkMenuItemStatusLevelBasic), "activate", G_CALLBACK(gtkMenuItemStatusLevelBasicActivate)
+ * G_OBJECT(gtkMenuItemStatusLevelNormal), "activate", G_CALLBACK(gtkMenuItemStatusLevelNormalActivate)
+ * G_OBJECT(gtkMenuItemStatusLevelHigh), "activate", G_CALLBACK(gtkMenuItemStatusLevelHighActivate)
+ * G_OBJECT(gtkMenuItemHelpAbout), "activate", G_CALLBACK(gtkMenuItemHelpAboutShow)
  */
 void gtkSignalsConnect(void)
 {

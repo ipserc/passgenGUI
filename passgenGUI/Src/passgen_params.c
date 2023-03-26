@@ -82,6 +82,9 @@ psgParams_t * getPsgParams(void)
 
 /**
  * Reads the params passed from the command line
+ * @params argc
+ * @param argv[]
+ * @return The psgParams_t structure filled up
  */
 psgParams_t * readPsgParams(int argc, char * argv[])
 {

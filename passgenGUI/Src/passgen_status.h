@@ -26,7 +26,7 @@
 // Interface used type
 enum USER_INTERFACE
 {
-	CLI,
+	CCI,
 	GUI
 };
 
@@ -51,6 +51,5 @@ void printStatus(enum STATUS_LEVEL level, const char *fmtstr, ...);
 int getStatusIdFromName(const char * inStatusName);
 char * getStatusNameFromId(enum STATUS_LEVEL status);
 char * getCurrentStatusName(void);
-
 
 #endif /* SRC_PASSGEN_STATUS_H_ */

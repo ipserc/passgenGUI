@@ -61,7 +61,6 @@ GtkClipboard *getClipboard(void);
 user_data_t *gtkUserData(void);
 void catchSigterm(void);
 void gtkSetCursor(GdkCursorType cursorType);
-void gtkWarning(const char *fmtstr, ...);
 void gtkClosePassgen(void);
 void gtkPassgenFileQuit(GtkImageMenuItem *fileQuit, gpointer user_data);
 void gtkWidgetSetEditable(GtkWidget *gtkWidget, gboolean editable);
@@ -74,6 +73,5 @@ void passgenConfRulesValuesSet(void);
 gboolean gtkCheckRules(void);
 void gtkInitPassgen(void);
 void gtkSignalsConnect(void);
-
 
 #endif /* SRC_PASSGEN_GUI_H_ */

@@ -15,6 +15,7 @@
 
 /**
  * Fills up gtkEntry_Password_Text with text
+ * @param text The text to write into gtkEntry_Password_Text
  */
 void gtkEntryPasswordTextSet(char * text)
 {
@@ -23,7 +24,8 @@ void gtkEntryPasswordTextSet(char * text)
 }
 
 /**
- *
+ * Sets gtkEntry_Password_Text editable property
+ * @param editable The editable property as boolean True/False
  */
 void gtkEntryPasswordTextSetEditable(gboolean editable)
 {

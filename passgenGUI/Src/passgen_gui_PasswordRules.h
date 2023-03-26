@@ -68,5 +68,4 @@ int gtkGetActiveEntryPasswordRuleValue(int charSetGroup);
 int gtkSumActiveEntryPasswordRules(void);
 int gtkSumRestActiveEntryPasswordRules(int charSetGroup);
 
-
 #endif /* SRC_PASSGEN_GUI_PASSWORDRULES_H_ */

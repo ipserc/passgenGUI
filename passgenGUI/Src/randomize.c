@@ -16,13 +16,14 @@
 
 /**
  * Returns the version of randomize
+ * @return The version of randomize
  */
 char * getRandomizeVersion(void) {
 	return VERSION;
 }
 
 /**
- * Prints the version of randomize
+ * Prints in the standard output the version of randomize
  */
 void putsRandomizeVersion(void) {
 	puts(VERSION);

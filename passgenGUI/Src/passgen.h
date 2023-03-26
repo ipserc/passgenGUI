@@ -96,6 +96,7 @@ void initGrpChrLimit(void);
 int sumGrpChrLimit(void);
 int getGrpChrLimit(int charGroup);
 _Bool isGrpChrExcluded(int charGroup);
+void traceGrpChrExcluded(void);
 int sumActiveGrpChrLimit(void);
 int sumRestActiveGrpChrLimit(int charGroup);
 _Bool setGrpChrLimit(int charGroup, int value);
@@ -117,6 +118,5 @@ char *passgenConf2Rules(void);
 void passgenGUI(void);
 int passgenCCI(void);
 int main(int argc, char *argv[]);
-
 
 #endif /* PASSGEN_H_ */

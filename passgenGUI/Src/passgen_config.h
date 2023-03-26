@@ -135,5 +135,4 @@ int passwordLengthPresetNameSize(char *name);
 int passwordLengthPresetIdSize(preset_idx id);
 _Bool isUSER(char *name);
 
-
 #endif /* SRC_PASSGEN_CONFIG_H_ */

@@ -33,5 +33,4 @@ void gtkEntryPasswordTextClear(void);
 void gtkEntryPasswordTextInit(void);
 char *gtkEntryPasswordTextCopy(void);
 
-
 #endif /* SRC_PASSGEN_GUI_PASSWORD_H_ */
