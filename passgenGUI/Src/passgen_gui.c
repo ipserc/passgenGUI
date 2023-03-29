@@ -183,8 +183,6 @@ void passgenGtkSettings2PassgenConf(void)
 {
 	if (__DEBUG__) TRACE("START of passgenGtkSettings2PassgenConf()", "");
 
-	if (userInterface == CLI) return;
-
 	passgenConf_t * ptPassgenConf = getPassgenConf();
 
 	/* Password Length Preset*/
@@ -237,6 +235,7 @@ void gtkPasswordGenerate(void)
 
 	if (__DEBUG__) TRACE("About to generate the new password", "");
 
+	passgenGtkSettings2PassgenConf();
 	char * newPass = passgenConf2Rules();
 	if (__DEBUG__) TRACE("newPass Address %p", newPass);
 

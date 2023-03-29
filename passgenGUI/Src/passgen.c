@@ -27,7 +27,7 @@
 //------------------------------------------
 //          PROGRAM FACTS SECTION
 //------------------------------------------
-#define VERSION		"1.0.1 (2023_0329_2130)"
+#define VERSION		"1.0.2 (2023_0329_2215)"
 #define AUTHOR		"ipserc"
 #define CONTACT 	"https://github.com/ipserc"
 #define CREATION	"2023/02/09"
@@ -786,7 +786,6 @@ char * passgenConf2Rules(void)
 
 	initGrpChrLimit();
 	initExcludedGroups();
-	passgenGtkSettings2PassgenConf();
 	setPassgenConfCaseRule2Values();
 	printExcludedGroups();
 
