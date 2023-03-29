@@ -183,6 +183,8 @@ void passgenGtkSettings2PassgenConf(void)
 {
 	if (__DEBUG__) TRACE("START of passgenGtkSettings2PassgenConf()", "");
 
+	if (userInterface == CLI) return;
+
 	passgenConf_t * ptPassgenConf = getPassgenConf();
 
 	/* Password Length Preset*/

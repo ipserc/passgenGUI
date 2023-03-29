@@ -26,7 +26,7 @@
 // Interface used type
 enum USER_INTERFACE
 {
-	CCI,
+	CLI,
 	GUI
 };
 

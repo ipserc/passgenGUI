@@ -30,6 +30,7 @@
 #include "passgen_gui_PasswordRules.h"
 #include "passgen_gui_Password.h"
 #include "passgen_gui_MenuBar.h"
+#include "passgen_gui_Status.h"
 
 extern int PASS_LEN;
 extern char *passgenConf2Rules(void);

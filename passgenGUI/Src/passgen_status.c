@@ -28,7 +28,7 @@ void printStatus(enum STATUS_LEVEL level, const char * fmtstr,...)
 	vsprintf(status, fmtstr, arglist);
 	va_end(arglist);
 
-	if (userInterface == CCI)
+	if (userInterface == CLI)
 	{
 		puts(status);
 	}

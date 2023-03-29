@@ -1,3 +1,32 @@
+VERSION		"1.0.1 (2023_0329_2130)"
+	Replacing CCI (Comand Console Interface) by CLI (Comand Line Interface)
+	Src/
+		passgen.c:
+			862:* Runs passgen in Command Line Interface mode (CLI)
+			864:int passgenCLI(void)
+			915:userInterface = CLI;
+			939:return passgenCLI();
+	
+		passgen_gui.c:
+			63:clipboard = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
+		
+		passgen_status.h:
+			29:CLI,
+		passgen_status.c:
+			31:if (userInterface == CLI)
+
+		passgen_gui.h:		
+			#include "passgen_gui_Status.h"
+		passgen_gui.c:
+			186: if (userInterface == CLI) return;
+		
+	Bin/
+		===========================================
+		passgen has been compiled...
+		Compilation:mié 29 mar 2023 21:51:47 CEST
+		===========================================
+		fea8bcb6465256bab97734c8cb52b365  passgen
+
 VERSION		"1.0.1 (2023_0326_1230)"
 	Glade/
 		passgen.glade

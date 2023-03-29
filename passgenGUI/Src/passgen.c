@@ -27,11 +27,11 @@
 //------------------------------------------
 //          PROGRAM FACTS SECTION
 //------------------------------------------
-#define VERSION		"1.0.1 (2023_0326_1205)"
+#define VERSION		"1.0.1 (2023_0329_2130)"
 #define AUTHOR		"ipserc"
 #define CONTACT 	"https://github.com/ipserc"
 #define CREATION	"2023/02/09"
-#define COMPILATION	"2023/03/26"
+#define COMPILATION	"2023/03/29"
 #define PROGRAM		"passgen"
 #define MODULE		__FILE__
 #define LICENSE		"GNU General Public License v3.0"
@@ -859,9 +859,9 @@ void passgenGUI(void)
 }
 
 /**
- * Runs passgen in Command Console Interface mode (CCI)
+ * Runs passgen in Command Line Interface mode (CLI)
  */
-int passgenCCI(void)
+int passgenCLI(void)
 {
 	/* INITIALIZATION */
 	char * newPass;
@@ -908,11 +908,11 @@ int main(int argc, char * argv[])
 	sprintf(ptPassgenConf->appName, "%s", basename(argv[0]));
 	if (__DEBUG__ ) printPassgenConfig();
 	/* ***************************************************** */
-	/* 				COMMAND  CONSOLE  INTERFACE				 */
+	/* 				COMMAND  LINE  INTERFACE				 */
 	/* ***************************************************** */
 	if (argc > 1)
 	{
-		userInterface = CCI;
+		userInterface = CLI;
 		psgParams_t * psgParams = readPsgParams(argc, argv);
 
 		if (psgParams->help)
@@ -936,7 +936,7 @@ int main(int argc, char * argv[])
 		if (psgParams->nogui)
 		{
 			printfacts();
-			return passgenCCI();
+			return passgenCLI();
 		}
 		if (__DEBUG__) TRACE("%s", "option not recognized");
 		return EXIT_SUCCESS;
