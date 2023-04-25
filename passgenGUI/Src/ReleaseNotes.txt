@@ -1,3 +1,23 @@
+VERSION		"1.0.3 (2023_0425_2309)"
+	passgen.c:
+		Translate to english the decription of setGrpChrLimit
+	passgen_gui.c:
+	passgen_config.c:
+	passgen_errtra.c:
+	passgen_gui_PasswordLength.c:
+	passgen_params.c:
+	passgen_gui_Status.c:
+	passgen_status.c:
+		Some errors fixed at the doxigen's description section
+
+	Bin/	
+		===========================================
+		passgen has been compiled...
+		Compilation:mié 26 abr 2023 00:03:52 CEST
+		===========================================
+		1dead49747d26da58c34a7a7bd28bec4 passgen
+
+
 VERSION		"1.0.2 (2023_0329_2215)"
 		passgen_gui.c:
 			void gtkPasswordGenerate(void)

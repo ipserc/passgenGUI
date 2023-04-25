@@ -139,7 +139,7 @@ void gtkClosePassgen(void)
 
 /**
  * Passgen File Quit menu callback
- * @param menuConfigQuit
+ * @param fileQuit
  * @param user_data
  */
 void gtkPassgenFileQuit(GtkImageMenuItem * fileQuit, gpointer user_data)

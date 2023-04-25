@@ -27,11 +27,11 @@
 //------------------------------------------
 //          PROGRAM FACTS SECTION
 //------------------------------------------
-#define VERSION		"1.0.2 (2023_0329_2215)"
+#define VERSION		"1.0.3 (2023_0426_0005)"
 #define AUTHOR		"ipserc"
 #define CONTACT 	"https://github.com/ipserc"
 #define CREATION	"2023/02/09"
-#define COMPILATION	"2023/03/29"
+#define COMPILATION	"2023/04/26"
 #define PROGRAM		"passgen"
 #define MODULE		__FILE__
 #define LICENSE		"GNU General Public License v3.0"
@@ -274,9 +274,11 @@ int sumRestActiveGrpChrLimit(int charGroup)
 }
 
 /**
- * Pone la varuable global GRPCHRS_LIMIT[charGroup] al valor que se le pasa.
- * Devuelve false si el conjunto de caracteres NO está activo o
- */
+  * Sets the global variable GRPCHRS_LIMIT[charGroup] to the value passed to it.
+  * @param charGroup The character group to set
+  * @param value The value to set to the character group
+  * @returns false if the character set is NOT active or
+  */
 bool setGrpChrLimit(int charGroup, int value)
 {
 	if (__DEBUG__) TRACE("START setGrpChrLimit(%s, %d)", decodeGroupType(charGroup), value);

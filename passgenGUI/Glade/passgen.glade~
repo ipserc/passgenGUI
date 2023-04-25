@@ -15,7 +15,7 @@
     <property name="website">https://github.com/ipserc</property>
     <property name="website-label" translatable="yes">https://github.com/ipserc</property>
     <property name="authors">ipserc</property>
-    <property name="logo">../Src/genpass-152x152.png</property>
+    <property name="logo-icon-name">changes-prevent</property>
     <property name="license-type">gpl-3-0</property>
     <signal name="close" handler="gtk_widget_hide" object="gtkDialog_passgen" swapped="no"/>
     <signal name="delete-event" handler="gtk_widget_hide" object="gtkDialog_passgen" swapped="no"/>
@@ -47,7 +47,7 @@
     <property name="window-position">center</property>
     <property name="default-width">20</property>
     <property name="default-height">20</property>
-    <property name="icon">../Src/genpass-256x256.png</property>
+    <property name="icon-name">changes-prevent</property>
     <property name="type-hint">normal</property>
     <property name="gravity">center</property>
     <signal name="close" handler="gtk_widget_destroy" swapped="no"/>
@@ -289,6 +289,7 @@
                               <object class="GtkComboBoxText" id="gtkComboBoxText_PasswordLengthPreset">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
+                                <property name="tooltip-text" translatable="yes">Default length values for the password. USER allows you to set a custom length</property>
                                 <property name="margin-end">6</property>
                                 <property name="margin-top">6</property>
                                 <property name="margin-bottom">6</property>
@@ -322,6 +323,7 @@
                               <object class="GtkEntry" id="gtkEntry_PasswordLengthSize">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
+                                <property name="tooltip-text" translatable="yes">The length of the password</property>
                                 <property name="margin-top">6</property>
                                 <property name="margin-bottom">6</property>
                                 <property name="max-length">2</property>
@@ -393,10 +395,11 @@
                             <property name="column-homogeneous">True</property>
                             <child>
                               <object class="GtkCheckButton" id="gtkCheckButton_PasswordRulesSet_Upper">
-                                <property name="label" translatable="yes">Upper Case</property>
+                                <property name="label" translatable="yes">Uppercase</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">False</property>
+                                <property name="tooltip-text" translatable="yes">Turns on/off the use of Uppercase' characters to generate the password</property>
                                 <property name="margin-end">3</property>
                                 <property name="hexpand">False</property>
                                 <property name="vexpand">False</property>
@@ -413,6 +416,7 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">False</property>
+                                <property name="tooltip-text" translatable="yes">Turns on/off the use of Symbols' characters to generate the passwor</property>
                                 <property name="margin-end">3</property>
                                 <property name="margin-bottom">3</property>
                                 <property name="hexpand">False</property>
@@ -426,10 +430,11 @@
                             </child>
                             <child>
                               <object class="GtkCheckButton" id="gtkCheckButton_PasswordRulesSet_Lower">
-                                <property name="label" translatable="yes">Lower Case</property>
+                                <property name="label" translatable="yes">Lowercase</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">False</property>
+                                <property name="tooltip-text" translatable="yes">Turns on/off the use of Lowercase' characters to generate the passwor</property>
                                 <property name="margin-start">3</property>
                                 <property name="hexpand">False</property>
                                 <property name="vexpand">False</property>
@@ -442,10 +447,11 @@
                             </child>
                             <child>
                               <object class="GtkCheckButton" id="gtkCheckButton_PasswordRulesSet_Number">
-                                <property name="label" translatable="yes">Numbers</property>
+                                <property name="label" translatable="yes">Numerics</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">False</property>
+                                <property name="tooltip-text" translatable="yes">Turns on/off the use of Numerics' characters to generate the passwor</property>
                                 <property name="margin-start">3</property>
                                 <property name="margin-bottom">3</property>
                                 <property name="hexpand">False</property>
@@ -461,6 +467,7 @@
                               <object class="GtkEntry" id="gtkEntry_PasswordRulesSet_Upper">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
+                                <property name="tooltip-text" translatable="yes">If active, sets the minimum number of Uppercase' characters that the password must have</property>
                                 <property name="halign">start</property>
                                 <property name="margin-end">6</property>
                                 <property name="margin-bottom">3</property>
@@ -477,6 +484,7 @@
                               <object class="GtkEntry" id="gtkEntry_PasswordRulesSet_Symbol">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
+                                <property name="tooltip-text" translatable="yes">If active, sets the exact number of Symbols' characters that the password must have</property>
                                 <property name="halign">start</property>
                                 <property name="margin-end">6</property>
                                 <property name="margin-top">3</property>
@@ -493,6 +501,7 @@
                               <object class="GtkEntry" id="gtkEntry_PasswordRulesSet_Number">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
+                                <property name="tooltip-text" translatable="yes">If active, sets the minimum number of Numerics' characters that the password must have</property>
                                 <property name="halign">start</property>
                                 <property name="margin-end">6</property>
                                 <property name="margin-top">3</property>
@@ -509,6 +518,7 @@
                               <object class="GtkEntry" id="gtkEntry_PasswordRulesSet_Lower">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
+                                <property name="tooltip-text" translatable="yes">If active, sets the minimum number of Lowercase' characters that the password must have</property>
                                 <property name="halign">start</property>
                                 <property name="margin-end">6</property>
                                 <property name="margin-bottom">3</property>
@@ -575,6 +585,7 @@
                                 <property name="name">gtk_EntryFieldPassword</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
+                                <property name="tooltip-text" translatable="yes">Here you can find your new password</property>
                                 <property name="margin-bottom">6</property>
                                 <property name="editable">False</property>
                                 <property name="progress-fraction">2.2351741811588166e-10</property>
@@ -593,6 +604,7 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
+                                <property name="tooltip-text" translatable="yes">Copy the password into the clipboard</property>
                                 <property name="margin-end">6</property>
                                 <property name="margin-bottom">6</property>
                                 <property name="use-stock">True</property>
@@ -657,6 +669,7 @@
 </property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
+                            <property name="tooltip-text" translatable="yes">The status information</property>
                             <property name="margin-start">6</property>
                             <property name="margin-end">6</property>
                             <property name="editable">False</property>

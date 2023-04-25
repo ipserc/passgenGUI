@@ -40,7 +40,7 @@ void printStatus(enum STATUS_LEVEL level, const char * fmtstr,...)
 
 /**
  * Retrieves the status Id from its name
- * @param The statusName "BASIC", "NORMAL", "HIGH"
+ * @param inStatusName The statusName "BASIC", "NORMAL", "HIGH"
  * @return The status Id, -1 if statusName is not one of "BASIC", "NORMAL", "HIGH"
  */
 int getStatusIdFromName(const char * inStatusName)

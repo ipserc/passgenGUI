@@ -15,9 +15,9 @@
 char passwordLengthPresetsNames[LAST_PRESET][10] = {"USER", "PIN", "MEDIUM", "LONG", "ULTRA", "PARANOIC"};
 
 /**
- * Returns the name of the password preset length corresponding with th id
- * @param id The id of the password preset length
- * @return The name of the password preset length passed in id
+ * Returns the name of the password preset length corresponding with the idx
+ * @param idx The id of the password preset length
+ * @return The name of the password preset length passed in idx
  */
 char * getPasswordLengthPresetsName(int idx)
 {
@@ -45,9 +45,9 @@ int getPasswordLengthPresetsNameIdx(char * name)
 int  passwordLengthPresetsSizes[LAST_PRESET] = {1, 4, 8, 16, 32, 64};
 
 /**
- * Returns the the password preset length of the id passed
- * @param id The id of the password preset length
- * @return The length of the password preset passed in id
+ * Returns the the password preset length of the idx passed
+ * @param idx The idx of the password preset length
+ * @return The length of the password preset passed in idx
  */
 int getPasswordLengthPresetsSize(int idx)
 {
@@ -92,7 +92,7 @@ passgenConf_t * getPassgenConf()
 
 /**
  * Overwrites the String with the letter in Capital
- * @param The string to transform to uppercase
+ * @param str The string to transform to uppercase
  * @return The string transformed to uppercase
  */
 char * strToUpper(char * str)
@@ -109,7 +109,7 @@ char * strToUpper(char * str)
 
 /**
  * O* Overwrites the String with lowercase letters
- * @param The string to transform to lowercase
+ * @param str The string to transform to lowercase
  * @return The string transformed to lowercase
  */
 char *  strToLower(char * str)
@@ -143,7 +143,7 @@ bool strBool2Bool(char * strBool)
 
 /**
  * Interprets the text True or False and returns its boolean value
- * @param strBool The string of the boolean value True or False
+ * @param boolVal The string of the boolean value True or False
  * @return true, false or -1 in case the strBool wasn't be a boolean valid name
  */
 char *  bool2StrBool(bool boolVal)
@@ -203,7 +203,8 @@ char * passGenConfigStreamFile(void)
 
 /**
  * Writes passGen Configuration kept in ptPassgenConf to zhavam.conf
- * @param passGenHome
+ * @param passgenHome Tpath to the passgen home
+ * @return True if the config has been written, otherwise false
  */
 bool writePassgenConfig(char * passgenHome)
 {
@@ -435,7 +436,7 @@ void passgenConfigRead(passgenConf_t * ptPassgenConf)
 
 /**
  * Looks up for a specific field of passgenConf_t structure
- * @param passgenConfItems_t passgenConfItem the item of the passgenConf_t that wants to get
+ * @param passgenConfItem the item of the passgenConf_t that wants to get
  * @return The value of the passgenConfItem
  */
 void * lookupPassgenConfig(passgenConfItems_t passgenConfItem)

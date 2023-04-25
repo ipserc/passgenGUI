@@ -39,7 +39,7 @@ int gtkEntryPasswordLengthSizeGet(void)
 
 /**
  * Enables or disables the attribute editable of gtkEntry_PasswordLengthSize
- * @param The value true or false of the editable attribute
+ * @param editable The value true or false of the editable attribute
  */
 void gtkEntryPasswordLengthSizeEditable(gboolean editable)
 {

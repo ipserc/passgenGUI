@@ -13,6 +13,8 @@
 #include <time.h>
 #include "passgen_errtra.h"
 
+char STATUS_MESSAGE[MAXLEN_STATUS_MESSSAGE];
+
 /**
  * Full Error message with information of errno, fileName, functionName, lineNbr and ErrorMsg printed in stderr
  * @param fileName
@@ -66,10 +68,11 @@ void eError(const char * fmtstr,...)
 
 /**
  * Full trace message with information of timestamp, fileName, functionName, lineNbr and TraceMsg printed in stdout
- * @param const char * fileName
- * @param const char * functionName
- * @param fmtstr: Format string as in printf
- * @param ...: Rest of parameters
+ * @param fileName
+ * @param functionName
+ * @param lineNbr
+ * @param fmtstr Format string as in printf
+ * @param ... Rest of parameters
  */
 void funcTrace(const char * fileName,
 				const char * functionName,
@@ -93,12 +96,12 @@ void funcTrace(const char * fileName,
 
 /**
  * Full warning message with information of errno, fileName, functionName, lineNbr and WarningMsg printed in stdout
- * @param const char * fileName
- * @param const char * functionName
- * @param const int lineNbr
- * @param const int errorNbr
- * @param fmtstr: Format string as in printf
- * @param ...: Rest of parameters
+ * @param fileName
+ * @param functionName
+ * @param lineNbr
+ * @param errorNbr
+ * @param fmtstr Format string as in printf
+ * @param ... Rest of parameters
  */
 int funcWarning(const char * fileName,
 				const char * functionName,
