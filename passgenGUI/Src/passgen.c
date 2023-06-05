@@ -27,11 +27,11 @@
 //------------------------------------------
 //          PROGRAM FACTS SECTION
 //------------------------------------------
-#define VERSION		"1.0.3 (2023_0426_0005)"
+#define VERSION		"1.0.4 (2023_0605_2306)"
 #define AUTHOR		"ipserc"
 #define CONTACT 	"https://github.com/ipserc"
 #define CREATION	"2023/02/09"
-#define COMPILATION	"2023/04/26"
+#define COMPILATION	"2023/06/05"
 #define PROGRAM		"passgen"
 #define MODULE		__FILE__
 #define LICENSE		"GNU General Public License v3.0"
@@ -727,6 +727,8 @@ char * genPass(char * passContainer)
 	free(LOWER_CASE_SHUFFLED);
 	free(NUMBR_CASE_SHUFFLED);
 	free(SYMBL_CASE_SHUFFLED);
+
+	passContainer = shuffleCharacterSet(passContainer);
 
 	return (char *)(passContainer);
 }
